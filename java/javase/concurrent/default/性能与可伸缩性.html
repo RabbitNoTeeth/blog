@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>死锁 | 刘新冬的博客</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <link rel="icon" href="/img/logo.png">
+    <meta name="description" content="死锁">
+    
+    <link rel="preload" href="/assets/css/0.styles.7ecebcba.css" as="style"><link rel="preload" href="/assets/js/app.a38c516a.js" as="script"><link rel="preload" href="/assets/js/2.ba6b1436.js" as="script"><link rel="preload" href="/assets/js/1.2d4ce02f.js" as="script"><link rel="preload" href="/assets/js/88.51fe8179.js" as="script"><link rel="prefetch" href="/assets/js/10.14082ad8.js"><link rel="prefetch" href="/assets/js/100.2a4f0938.js"><link rel="prefetch" href="/assets/js/101.8a62150f.js"><link rel="prefetch" href="/assets/js/102.35a7e2ea.js"><link rel="prefetch" href="/assets/js/103.faae61d0.js"><link rel="prefetch" href="/assets/js/104.c27f3d0b.js"><link rel="prefetch" href="/assets/js/105.9326a988.js"><link rel="prefetch" href="/assets/js/106.3dc22e61.js"><link rel="prefetch" href="/assets/js/107.0ceb8376.js"><link rel="prefetch" href="/assets/js/108.c36e9500.js"><link rel="prefetch" href="/assets/js/11.d36ef131.js"><link rel="prefetch" href="/assets/js/12.c5493e01.js"><link rel="prefetch" href="/assets/js/13.430eca0c.js"><link rel="prefetch" href="/assets/js/14.c88f86cd.js"><link rel="prefetch" href="/assets/js/15.e1cc950a.js"><link rel="prefetch" href="/assets/js/16.b699b95c.js"><link rel="prefetch" href="/assets/js/17.b99ba729.js"><link rel="prefetch" href="/assets/js/18.7dff4b06.js"><link rel="prefetch" href="/assets/js/19.ff06d982.js"><link rel="prefetch" href="/assets/js/20.7de9995c.js"><link rel="prefetch" href="/assets/js/21.cb9bdcf0.js"><link rel="prefetch" href="/assets/js/22.16dfd536.js"><link rel="prefetch" href="/assets/js/23.eb560dbc.js"><link rel="prefetch" href="/assets/js/24.661e2539.js"><link rel="prefetch" href="/assets/js/25.c7f21645.js"><link rel="prefetch" href="/assets/js/26.64d829b6.js"><link rel="prefetch" href="/assets/js/27.4b3a16c0.js"><link rel="prefetch" href="/assets/js/28.2692df26.js"><link rel="prefetch" href="/assets/js/29.ce82418b.js"><link rel="prefetch" href="/assets/js/3.00356991.js"><link rel="prefetch" href="/assets/js/30.2051ef3b.js"><link rel="prefetch" href="/assets/js/31.34e09941.js"><link rel="prefetch" href="/assets/js/32.e50cc8ec.js"><link rel="prefetch" href="/assets/js/33.9461dbb1.js"><link rel="prefetch" href="/assets/js/34.e4da7325.js"><link rel="prefetch" href="/assets/js/35.a13a0b57.js"><link rel="prefetch" href="/assets/js/36.06d083bd.js"><link rel="prefetch" href="/assets/js/37.f7918bab.js"><link rel="prefetch" href="/assets/js/38.86961f10.js"><link rel="prefetch" href="/assets/js/39.8113a23c.js"><link rel="prefetch" href="/assets/js/4.7fa5c39e.js"><link rel="prefetch" href="/assets/js/40.434f5479.js"><link rel="prefetch" href="/assets/js/41.a4cbee5e.js"><link rel="prefetch" href="/assets/js/42.351f521c.js"><link rel="prefetch" href="/assets/js/43.5f3ad053.js"><link rel="prefetch" href="/assets/js/44.d88da63e.js"><link rel="prefetch" href="/assets/js/45.a9b5d36b.js"><link rel="prefetch" href="/assets/js/46.845f8e9a.js"><link rel="prefetch" href="/assets/js/47.50e3be7d.js"><link rel="prefetch" href="/assets/js/48.cb688c31.js"><link rel="prefetch" href="/assets/js/49.e239b0d8.js"><link rel="prefetch" href="/assets/js/5.8a935be6.js"><link rel="prefetch" href="/assets/js/50.7729a443.js"><link rel="prefetch" href="/assets/js/51.a5bfe490.js"><link rel="prefetch" href="/assets/js/52.94334c08.js"><link rel="prefetch" href="/assets/js/53.6c2661e4.js"><link rel="prefetch" href="/assets/js/54.9b31e7a4.js"><link rel="prefetch" href="/assets/js/55.4fac431c.js"><link rel="prefetch" href="/assets/js/56.a00bf0ab.js"><link rel="prefetch" href="/assets/js/57.92ae460e.js"><link rel="prefetch" href="/assets/js/58.f7f0da5f.js"><link rel="prefetch" href="/assets/js/59.7e810fa1.js"><link rel="prefetch" href="/assets/js/6.c6745fa4.js"><link rel="prefetch" href="/assets/js/60.ea3fa83f.js"><link rel="prefetch" href="/assets/js/61.d78f5084.js"><link rel="prefetch" href="/assets/js/62.bd986f10.js"><link rel="prefetch" href="/assets/js/63.ae3536c2.js"><link rel="prefetch" href="/assets/js/64.492fcc89.js"><link rel="prefetch" href="/assets/js/65.2ebe492f.js"><link rel="prefetch" href="/assets/js/66.b9c8f37b.js"><link rel="prefetch" href="/assets/js/67.1d25c263.js"><link rel="prefetch" href="/assets/js/68.3b9d23fa.js"><link rel="prefetch" href="/assets/js/69.2816cb57.js"><link rel="prefetch" href="/assets/js/7.f127ebf8.js"><link rel="prefetch" href="/assets/js/70.ac77f002.js"><link rel="prefetch" href="/assets/js/71.0be7a2dd.js"><link rel="prefetch" href="/assets/js/72.6b6c0f37.js"><link rel="prefetch" href="/assets/js/73.6fd98879.js"><link rel="prefetch" href="/assets/js/74.07e6199b.js"><link rel="prefetch" href="/assets/js/75.496aef35.js"><link rel="prefetch" href="/assets/js/76.85cd6aca.js"><link rel="prefetch" href="/assets/js/77.1e1f6d01.js"><link rel="prefetch" href="/assets/js/78.386f7748.js"><link rel="prefetch" href="/assets/js/79.c73f26bb.js"><link rel="prefetch" href="/assets/js/80.73e2f1b9.js"><link rel="prefetch" href="/assets/js/81.374b0aea.js"><link rel="prefetch" href="/assets/js/82.8ea9351f.js"><link rel="prefetch" href="/assets/js/83.9367f8bf.js"><link rel="prefetch" href="/assets/js/84.9b0667ae.js"><link rel="prefetch" href="/assets/js/85.441841fb.js"><link rel="prefetch" href="/assets/js/86.b33f285d.js"><link rel="prefetch" href="/assets/js/87.1204c179.js"><link rel="prefetch" href="/assets/js/89.94101060.js"><link rel="prefetch" href="/assets/js/90.e4ce6df4.js"><link rel="prefetch" href="/assets/js/91.c14bd802.js"><link rel="prefetch" href="/assets/js/92.bac05565.js"><link rel="prefetch" href="/assets/js/93.98011bc4.js"><link rel="prefetch" href="/assets/js/94.614bbf82.js"><link rel="prefetch" href="/assets/js/95.9fc69c4a.js"><link rel="prefetch" href="/assets/js/96.09e8cb5f.js"><link rel="prefetch" href="/assets/js/97.adbe6a5a.js"><link rel="prefetch" href="/assets/js/98.9b0a2ee0.js"><link rel="prefetch" href="/assets/js/99.6806f377.js"><link rel="prefetch" href="/assets/js/vendors~docsearch.162bdabc.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.7ecebcba.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/img/logo.png" alt="刘新冬的博客" class="logo"> <span class="site-name can-hide">刘新冬的博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>JavaSE</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/java/javase/" aria-current="page" class="sidebar-link">简介</a></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span>集合</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/java/javase/collection/default/Collection.html" class="sidebar-link">Collection</a></li><li><a href="/java/javase/collection/default/List.html" class="sidebar-link">List</a></li><li><a href="/java/javase/collection/default/Map.html" class="sidebar-link">Map</a></li><li><a href="/java/javase/collection/default/Queue.html" class="sidebar-link">Queue</a></li><li><a href="/java/javase/collection/default/Set.html" class="sidebar-link">Set</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading open"><span>并发</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/java/javase/concurrent/default/设计线程安全的类.html" class="sidebar-link">设计线程安全的类</a></li><li><a href="/java/javase/concurrent/default/基础构建模块.html" class="sidebar-link">基础构建模块</a></li><li><a href="/java/javase/concurrent/default/任务执行.html" class="sidebar-link">任务执行</a></li><li><a href="/java/javase/concurrent/default/取消与关闭.html" class="sidebar-link">取消与关闭</a></li><li><a href="/java/javase/concurrent/default/线程池的使用.html" class="sidebar-link">线程池的使用</a></li><li><a href="/java/javase/concurrent/default/死锁.html" class="sidebar-link">死锁</a></li><li><a href="/java/javase/concurrent/default/性能与可伸缩性.html" class="active sidebar-link">性能与可伸缩性</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/java/javase/concurrent/default/性能与可伸缩性.html#_1-对性能的思考" class="sidebar-link">1. 对性能的思考</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/java/javase/concurrent/default/性能与可伸缩性.html#_1-1-性能与可伸缩性" class="sidebar-link">1.1 性能与可伸缩性</a></li><li class="sidebar-sub-header"><a href="/java/javase/concurrent/default/性能与可伸缩性.html#_1-2-amdahl定律" class="sidebar-link">1.2 Amdahl定律</a></li></ul></li><li class="sidebar-sub-header"><a href="/java/javase/concurrent/default/性能与可伸缩性.html#_2-线程引入的开销" class="sidebar-link">2. 线程引入的开销</a></li><li class="sidebar-sub-header"><a href="/java/javase/concurrent/default/性能与可伸缩性.html#_3-减少锁的竞争" class="sidebar-link">3. 减少锁的竞争</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/java/javase/concurrent/default/性能与可伸缩性.html#_3-1-缩小锁的范围-快进快出" class="sidebar-link">3.1 缩小锁的范围（快进快出）</a></li><li class="sidebar-sub-header"><a href="/java/javase/concurrent/default/性能与可伸缩性.html#_3-2-减小锁的粒度" class="sidebar-link">3.2 减小锁的粒度</a></li><li class="sidebar-sub-header"><a href="/java/javase/concurrent/default/性能与可伸缩性.html#_3-3-锁分段" class="sidebar-link">3.3 锁分段</a></li><li class="sidebar-sub-header"><a href="/java/javase/concurrent/default/性能与可伸缩性.html#_3-4-避免热点域" class="sidebar-link">3.4 避免热点域</a></li><li class="sidebar-sub-header"><a href="/java/javase/concurrent/default/性能与可伸缩性.html#_3-5-一些替代独占锁的方法" class="sidebar-link">3.5 一些替代独占锁的方法</a></li></ul></li></ul></li><li><a href="/java/javase/concurrent/default/显式锁.html" class="sidebar-link">显式锁</a></li><li><a href="/java/javase/concurrent/default/构建自定义的同步工具.html" class="sidebar-link">构建自定义的同步工具</a></li><li><a href="/java/javase/concurrent/default/原子变量与非阻塞同步机制.html" class="sidebar-link">原子变量与非阻塞同步机制</a></li><li><a href="/java/javase/concurrent/default/Executor框架.html" class="sidebar-link">Executor框架</a></li><li><a href="/java/javase/concurrent/default/Future框架.html" class="sidebar-link">Future框架</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span>其他</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/java/javase/other/default/static关键字.html" class="sidebar-link">static关键字</a></li><li><a href="/java/javase/other/default/泛型机制.html" class="sidebar-link">泛型机制</a></li><li><a href="/java/javase/other/default/解决hash冲突的常用方法.html" class="sidebar-link">解决hash冲突的常用方法</a></li><li><a href="/java/javase/other/default/三元运算符与类型转换.html" class="sidebar-link">三元运算符与类型转换</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span>IO</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/java/javase/io/default/NIO概述.html" class="sidebar-link">NIO概述</a></li></ul></section></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><p>在设计并发的应用程序时，最重要的考虑因素通常不是将程序的性能提升至极致，而是始终要把安全性放在第一位，首先要保证程序能正确运行，然后仅当程序的性能要求和测试结果要求程序执行得更快时，才应该设法提高它的运行速度。</p> <h2 id="_1-对性能的思考"><a href="#_1-对性能的思考" class="header-anchor">#</a> 1. 对性能的思考</h2> <p>当操作性能由于某种特定的资源而受到限制时，我们通常将该操作称为资源密集型的操作，例如: CPU密集型、数据库密集型等。</p> <p>使用多个线程总会引入一些额外的性能开销，包括：线程之间的协调（例如加锁、触发信号以及内存同步等）、增加的上下文切换、线程的创建和销毁、以及线程的调度等。</p> <h3 id="_1-1-性能与可伸缩性"><a href="#_1-1-性能与可伸缩性" class="header-anchor">#</a> 1.1 性能与可伸缩性</h3> <p>可伸缩性指的是：当增加计算资源时（例如CPU、内存、存储容量或I/O带宽），程序的吞吐量或者处理能力相应的增加。</p> <p>避免不成熟的优化。首先使程序正确，然后再提高运行速度（如果它还运行的不够快）。</p> <h3 id="_1-2-amdahl定律"><a href="#_1-2-amdahl定律" class="header-anchor">#</a> 1.2 Amdahl定律</h3> <p>Amdahl定律描述的是：在增加计算资源的情况下，程序在理论上能够实现最高加速比，这个值取决于程序中可并行组件与串行总线所占的比重。</p> <p>假定F是必须被串行执行的部分，那么根据Amdahl定律，在包含N个处理器的机器中，最高的加速比为
+$$
+Speeddup \leq 1 \div ( F + (1-F)\div N )
+$$</p> <h2 id="_2-线程引入的开销"><a href="#_2-线程引入的开销" class="header-anchor">#</a> 2. 线程引入的开销</h2> <p><strong>上下文切换</strong></p> <p>如果可运行的线程数大于CPU的数量，那么操作系统最终会将某个正在运行的线程调度出来，从而使其他线程能够使用CPU，这将导致一次上下文切换，在这个过程中将保存当前运行线程的执行上下文，并将新调度进来的线程的执行上下文设置为当前上下文。</p> <p>当一个新的线程被切换进来时，它所需要的数据可能不在当前处理器的本地缓存中，因此上下文切换将导致一些缓存缺失，因而线程在首次调度运行时会更加缓慢。这就是为什么调度器会为每个可运行的线程分配一个最小执行时间，即使有许多其他的线程正在等待执行，它将上下文切换的开销分摊到更多不会中断的执行时间上，从而提高整体的吞吐量（以损失响应性为代价）。</p> <p>当线程由于等待某个发生竞争的锁而被阻塞时，JVM通常会将这个线程挂起，并允许它被交换出去，如果线程频繁的发生阻塞，那么它们将无法使用完整的调度时间片，在程序中发生越多的阻塞，与CPU密集型的程序会发生越多的上下文切换，从而增加调度开销，并因此而降低吞吐量。</p> <p>在大多数通用的处理器中，上下文切换的开销相当于5000~10000个时钟周期，也就是几微秒。</p> <h2 id="_3-减少锁的竞争"><a href="#_3-减少锁的竞争" class="header-anchor">#</a> 3. 减少锁的竞争</h2> <p>并发程序中，对可伸缩性的最主要威胁就是独占方式的资源锁。</p> <p>有3种方式可以降低锁的竞争程度：</p> <ol><li>减少锁的持有时间</li> <li>降低锁的请求频率</li> <li>使用带有协调机制的独占锁</li></ol> <h3 id="_3-1-缩小锁的范围-快进快出"><a href="#_3-1-缩小锁的范围-快进快出" class="header-anchor">#</a> 3.1 缩小锁的范围（快进快出）</h3> <div class="language- extra-class"><pre class="language-text"><code>****** 程序清单11-4 将一个锁不必要的持有过长时间 ******
+
+public class AttributeStore{
+    @GuardeBy(&quot;this&quot;)
+    private final Map&lt;String,String&gt; attributes = new HashMap&lt;&gt;();
+    public synchronized boolean userLocationMatches(String name,String reg){
+        String key = &quot;users.&quot; + name + &quot;.location&quot;;
+        String location = attributes.get(key);
+        if(location==null){
+            return false;
+        }
+        return Pattern.matches(reg,location);
+    }
+}
+****** 程序清单11-5 减少锁的持有时间 ******
+
+public class AttributeStore{
+    @GuardeBy(&quot;this&quot;)
+    private final Map&lt;String,String&gt; attributes = new HashMap&lt;&gt;();
+    public boolean userLocationMatches(String name,String reg){
+        String key = &quot;users.&quot; + name + &quot;.location&quot;;
+        String location;
+        synchronized(this){
+            location = attributes.get(key);
+        }
+        if(location==null){
+            return false;
+        }
+        return Pattern.matches(reg,location);
+    }
+}
+</code></pre></div><p>在分解同步代码快时，理想的平衡点将与平台相关，但在实际情况中，仅当可以将一些”大量”的计算或者阻塞操作从同步代码块中移出时，才应该考虑同步代码快的大小。</p> <h3 id="_3-2-减小锁的粒度"><a href="#_3-2-减小锁的粒度" class="header-anchor">#</a> 3.2 减小锁的粒度</h3> <p>也就是降低线程请求锁的频率。这可以通过锁分解和锁分段等技术来实现，在这些技术中将采用多个相互独立的锁来保护独立的状态变量，从而改变这些变量在之前由单个锁来保护的情况。</p> <div class="language- extra-class"><pre class="language-text"><code>****** 程序清单11-6 对锁进行分解 ******
+
+public class ServerStatus{
+    @GuardeBy(&quot;this&quot;)
+    public final Set&lt;String&gt; users = new HashSet&lt;&gt;();
+    @GuardeBy(&quot;this&quot;)
+    public final Set&lt;String&gt; locations = new HashSet&lt;&gt;();
+    
+    public synchronized void addUser(String user){
+        users.add(user);
+    }
+
+    public synchronized void addLocation(String location){
+        locations.add(location);
+    }
+}
+****** 程序清单11-7 将ServerStatus重新改写为使用锁分解技术 ******
+
+public class ServerStatus{
+    @GuardeBy(&quot;user&quot;)
+    public final Set&lt;String&gt; users = new HashSet&lt;&gt;();
+    @GuardeBy(&quot;location&quot;)
+    public final Set&lt;String&gt; locations = new HashSet&lt;&gt;();
+
+    public void addUser(String user){
+        synchronized (user){
+            users.add(user);
+        }
+    }
+
+    public void addLocation(String location){
+        synchronized (location){
+            locations.add(location);
+        }
+    }
+}
+</code></pre></div><p>如果在锁上存在适中而不是激烈的竞争时，通过将一个锁分解为两个锁，能最大限度地提升性能。</p> <h3 id="_3-3-锁分段"><a href="#_3-3-锁分段" class="header-anchor">#</a> 3.3 锁分段</h3> <p>在某些情况下，可以将锁分解技术进一步扩展为对一组独立对象上的锁进行分解，这种情况被称为锁分段。</p> <p>例如，在<code>ConcurrentHashMap</code>的实现中使用了一个包含16个锁的数组，每个锁保护散列桶的1/16，其中第N个散列桶由第(N mod 16)个锁来保护。假设散列函数具有合理的分布性，并且关键字能够实现均匀分布，那么这大约能把对于锁的请求减少到原来的1/16。正是这项技术使得<code>ConcurrentHashMap</code>能够支持多达16个并发的写入器。</p> <p>锁分段的一个劣势在于：与采用单个锁来实现独占访问相比，要获取多个锁来实现独占访问将更加困难，并且开销更高。</p> <div class="language- extra-class"><pre class="language-text"><code>****** 程序清单11-8 在基于散列的Map中使用锁分段技术 ******
+
+public class StripeMap{
+    private static final int N_LOCKS = 16;
+    private final Node[] buckets;
+    private final Object[] locks;
+    
+    public StripeMap(int numBuckets){
+        buckets = new Node[numBuckets];
+        locks = new Object[N_LOCKS];
+        for(int i=0;i&lt;N_LOCKS;i++){
+            locks[i] = new Object();
+        }
+    }
+    
+    private final int hash(Object key){
+        return Math.abs(key.hashCode() % buckets.length);
+    }
+    
+    public Object get(Object key){
+        int hash = hash(key);
+        synchronized (locks[hash % N_LOCKS]){
+            for(Node m = buckets[hash];m!=null;m=m.next){
+                if(m.key.equals(key)){
+                    return m.value;
+                }
+            }
+        }
+        return null;
+    }
+    
+    public void clear(){
+        for(int i=0;i&lt;buckets.length;i++){
+            synchronized (locks[i % N_LOCKS]){
+                buckets[i] = null;
+            }
+        }
+    }
+}
+</code></pre></div><h3 id="_3-4-避免热点域"><a href="#_3-4-避免热点域" class="header-anchor">#</a> 3.4 避免热点域</h3> <p>如果程序采用锁分段技术，那么一定要表现出在锁上的竞争频率高于在锁保护的数据上发生竞争的频率。</p> <p>当每个操作都请求多个变量时，锁的粒度将很难降低，一种常见的优化措施是将一些反复计算的结果缓存起来，即引入”热点域”，而这种热点域往往会限制可伸缩性。</p> <p>为了避免热点域的问题，<code>ConcurrentHashMap</code>中的size方法将对每个分段进行枚举并将每个分段中的元素数量相加，而不是维护一个全局计数。为了避免枚举每个元素，<code>ConcurrentHashMap</code>为每个分段维护了一个独立的计数，并通过每个分段的锁来维护这个值。</p> <h3 id="_3-5-一些替代独占锁的方法"><a href="#_3-5-一些替代独占锁的方法" class="header-anchor">#</a> 3.5 一些替代独占锁的方法</h3> <p>第三种降低竞争锁的影响的技术就是放弃使用独占锁。例如，使用并发容器、读-写锁、不可变对象、原子变量等。</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/java/javase/concurrent/default/死锁.html" class="prev">
+        死锁
+      </a></span> <span class="next"><a href="/java/javase/concurrent/default/显式锁.html">
+        显式锁
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.a38c516a.js" defer></script><script src="/assets/js/2.ba6b1436.js" defer></script><script src="/assets/js/1.2d4ce02f.js" defer></script><script src="/assets/js/88.51fe8179.js" defer></script>
+  </body>
+</html>

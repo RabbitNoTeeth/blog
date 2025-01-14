@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>idleTimeout，一个可以将服务器干废的参数 | 刘新冬的博客</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <link rel="icon" href="/img/logo.png">
+    <meta name="description" content="vertx idleTimeout详解">
+    
+    <link rel="preload" href="/assets/css/0.styles.7ecebcba.css" as="style"><link rel="preload" href="/assets/js/app.a38c516a.js" as="script"><link rel="preload" href="/assets/js/2.ba6b1436.js" as="script"><link rel="preload" href="/assets/js/1.2d4ce02f.js" as="script"><link rel="preload" href="/assets/js/100.2a4f0938.js" as="script"><link rel="prefetch" href="/assets/js/10.14082ad8.js"><link rel="prefetch" href="/assets/js/101.8a62150f.js"><link rel="prefetch" href="/assets/js/102.35a7e2ea.js"><link rel="prefetch" href="/assets/js/103.faae61d0.js"><link rel="prefetch" href="/assets/js/104.c27f3d0b.js"><link rel="prefetch" href="/assets/js/105.9326a988.js"><link rel="prefetch" href="/assets/js/106.3dc22e61.js"><link rel="prefetch" href="/assets/js/107.0ceb8376.js"><link rel="prefetch" href="/assets/js/108.c36e9500.js"><link rel="prefetch" href="/assets/js/11.d36ef131.js"><link rel="prefetch" href="/assets/js/12.c5493e01.js"><link rel="prefetch" href="/assets/js/13.430eca0c.js"><link rel="prefetch" href="/assets/js/14.c88f86cd.js"><link rel="prefetch" href="/assets/js/15.e1cc950a.js"><link rel="prefetch" href="/assets/js/16.b699b95c.js"><link rel="prefetch" href="/assets/js/17.b99ba729.js"><link rel="prefetch" href="/assets/js/18.7dff4b06.js"><link rel="prefetch" href="/assets/js/19.ff06d982.js"><link rel="prefetch" href="/assets/js/20.7de9995c.js"><link rel="prefetch" href="/assets/js/21.cb9bdcf0.js"><link rel="prefetch" href="/assets/js/22.16dfd536.js"><link rel="prefetch" href="/assets/js/23.eb560dbc.js"><link rel="prefetch" href="/assets/js/24.661e2539.js"><link rel="prefetch" href="/assets/js/25.c7f21645.js"><link rel="prefetch" href="/assets/js/26.64d829b6.js"><link rel="prefetch" href="/assets/js/27.4b3a16c0.js"><link rel="prefetch" href="/assets/js/28.2692df26.js"><link rel="prefetch" href="/assets/js/29.ce82418b.js"><link rel="prefetch" href="/assets/js/3.00356991.js"><link rel="prefetch" href="/assets/js/30.2051ef3b.js"><link rel="prefetch" href="/assets/js/31.34e09941.js"><link rel="prefetch" href="/assets/js/32.e50cc8ec.js"><link rel="prefetch" href="/assets/js/33.9461dbb1.js"><link rel="prefetch" href="/assets/js/34.e4da7325.js"><link rel="prefetch" href="/assets/js/35.a13a0b57.js"><link rel="prefetch" href="/assets/js/36.06d083bd.js"><link rel="prefetch" href="/assets/js/37.f7918bab.js"><link rel="prefetch" href="/assets/js/38.86961f10.js"><link rel="prefetch" href="/assets/js/39.8113a23c.js"><link rel="prefetch" href="/assets/js/4.7fa5c39e.js"><link rel="prefetch" href="/assets/js/40.434f5479.js"><link rel="prefetch" href="/assets/js/41.a4cbee5e.js"><link rel="prefetch" href="/assets/js/42.351f521c.js"><link rel="prefetch" href="/assets/js/43.5f3ad053.js"><link rel="prefetch" href="/assets/js/44.d88da63e.js"><link rel="prefetch" href="/assets/js/45.a9b5d36b.js"><link rel="prefetch" href="/assets/js/46.845f8e9a.js"><link rel="prefetch" href="/assets/js/47.50e3be7d.js"><link rel="prefetch" href="/assets/js/48.cb688c31.js"><link rel="prefetch" href="/assets/js/49.e239b0d8.js"><link rel="prefetch" href="/assets/js/5.8a935be6.js"><link rel="prefetch" href="/assets/js/50.7729a443.js"><link rel="prefetch" href="/assets/js/51.a5bfe490.js"><link rel="prefetch" href="/assets/js/52.94334c08.js"><link rel="prefetch" href="/assets/js/53.6c2661e4.js"><link rel="prefetch" href="/assets/js/54.9b31e7a4.js"><link rel="prefetch" href="/assets/js/55.4fac431c.js"><link rel="prefetch" href="/assets/js/56.a00bf0ab.js"><link rel="prefetch" href="/assets/js/57.92ae460e.js"><link rel="prefetch" href="/assets/js/58.f7f0da5f.js"><link rel="prefetch" href="/assets/js/59.7e810fa1.js"><link rel="prefetch" href="/assets/js/6.c6745fa4.js"><link rel="prefetch" href="/assets/js/60.ea3fa83f.js"><link rel="prefetch" href="/assets/js/61.d78f5084.js"><link rel="prefetch" href="/assets/js/62.bd986f10.js"><link rel="prefetch" href="/assets/js/63.ae3536c2.js"><link rel="prefetch" href="/assets/js/64.492fcc89.js"><link rel="prefetch" href="/assets/js/65.2ebe492f.js"><link rel="prefetch" href="/assets/js/66.b9c8f37b.js"><link rel="prefetch" href="/assets/js/67.1d25c263.js"><link rel="prefetch" href="/assets/js/68.3b9d23fa.js"><link rel="prefetch" href="/assets/js/69.2816cb57.js"><link rel="prefetch" href="/assets/js/7.f127ebf8.js"><link rel="prefetch" href="/assets/js/70.ac77f002.js"><link rel="prefetch" href="/assets/js/71.0be7a2dd.js"><link rel="prefetch" href="/assets/js/72.6b6c0f37.js"><link rel="prefetch" href="/assets/js/73.6fd98879.js"><link rel="prefetch" href="/assets/js/74.07e6199b.js"><link rel="prefetch" href="/assets/js/75.496aef35.js"><link rel="prefetch" href="/assets/js/76.85cd6aca.js"><link rel="prefetch" href="/assets/js/77.1e1f6d01.js"><link rel="prefetch" href="/assets/js/78.386f7748.js"><link rel="prefetch" href="/assets/js/79.c73f26bb.js"><link rel="prefetch" href="/assets/js/80.73e2f1b9.js"><link rel="prefetch" href="/assets/js/81.374b0aea.js"><link rel="prefetch" href="/assets/js/82.8ea9351f.js"><link rel="prefetch" href="/assets/js/83.9367f8bf.js"><link rel="prefetch" href="/assets/js/84.9b0667ae.js"><link rel="prefetch" href="/assets/js/85.441841fb.js"><link rel="prefetch" href="/assets/js/86.b33f285d.js"><link rel="prefetch" href="/assets/js/87.1204c179.js"><link rel="prefetch" href="/assets/js/88.51fe8179.js"><link rel="prefetch" href="/assets/js/89.94101060.js"><link rel="prefetch" href="/assets/js/90.e4ce6df4.js"><link rel="prefetch" href="/assets/js/91.c14bd802.js"><link rel="prefetch" href="/assets/js/92.bac05565.js"><link rel="prefetch" href="/assets/js/93.98011bc4.js"><link rel="prefetch" href="/assets/js/94.614bbf82.js"><link rel="prefetch" href="/assets/js/95.9fc69c4a.js"><link rel="prefetch" href="/assets/js/96.09e8cb5f.js"><link rel="prefetch" href="/assets/js/97.adbe6a5a.js"><link rel="prefetch" href="/assets/js/98.9b0a2ee0.js"><link rel="prefetch" href="/assets/js/99.6806f377.js"><link rel="prefetch" href="/assets/js/vendors~docsearch.162bdabc.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.7ecebcba.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/img/logo.png" alt="刘新冬的博客" class="logo"> <span class="site-name can-hide">刘新冬的博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Vert.x</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/java/vertx/" aria-current="page" class="sidebar-link">简介</a></li><li><a href="/java/vertx/default/idleTimeout.html" aria-current="page" class="active sidebar-link">idleTimeout, 一个可以将服务器干废的参数</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/java/vertx/default/idleTimeout.html#idletimeout-是什么" class="sidebar-link">idleTimeout 是什么？</a></li><li class="sidebar-sub-header"><a href="/java/vertx/default/idleTimeout.html#idletimeout-是如何干废服务器的" class="sidebar-link">idleTimeout 是如何干废服务器的？</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/java/vertx/default/idleTimeout.html#_1-生成线程转储" class="sidebar-link">1. 生成线程转储</a></li><li class="sidebar-sub-header"><a href="/java/vertx/default/idleTimeout.html#_2-分析线程转储" class="sidebar-link">2. 分析线程转储</a></li><li class="sidebar-sub-header"><a href="/java/vertx/default/idleTimeout.html#_3-分析线程大量创建的原因" class="sidebar-link">3. 分析线程大量创建的原因</a></li><li class="sidebar-sub-header"><a href="/java/vertx/default/idleTimeout.html#_4-生成堆转储" class="sidebar-link">4. 生成堆转储</a></li><li class="sidebar-sub-header"><a href="/java/vertx/default/idleTimeout.html#_5-分析堆转储" class="sidebar-link">5. 分析堆转储</a></li><li class="sidebar-sub-header"><a href="/java/vertx/default/idleTimeout.html#_6-检查程序代码" class="sidebar-link">6. 检查程序代码</a></li><li class="sidebar-sub-header"><a href="/java/vertx/default/idleTimeout.html#_7-验证问题是否解决" class="sidebar-link">7. 验证问题是否解决</a></li><li class="sidebar-sub-header"><a href="/java/vertx/default/idleTimeout.html#_8-问题还在-继续分析吧" class="sidebar-link">8. 问题还在，继续分析吧</a></li><li class="sidebar-sub-header"><a href="/java/vertx/default/idleTimeout.html#_9-问题解决" class="sidebar-link">9. 问题解决</a></li></ul></li></ul></li><li><a href="/java/vertx/default/在vertx中使用虚拟线程.html" class="sidebar-link">在vertx中使用虚拟线程</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="idletimeout-是什么"><a href="#idletimeout-是什么" class="header-anchor">#</a> idleTimeout 是什么？</h2> <p><code>idleTimeout</code>，是类<code>io.vertx.core.net.TCPSSLOptions</code>的一个字段，对于这个字段的作用，在其setter方法中有下面详细的描述：</p> <div class="language-java extra-class"><pre class="language-java"><code>  <span class="token comment">/**
+   * Set the idle timeout, default time unit is seconds. Zero means don't timeout.
+   * This determines if a connection will timeout and be closed if no data is received nor sent within the timeout.
+   *
+   * If you want change default time unit, use {@link #setIdleTimeoutUnit(TimeUnit)}
+   *
+   * @param idleTimeout  the timeout
+   * @return a reference to this, so the API can be used fluently
+   */</span>
+  <span class="token keyword">public</span> <span class="token class-name">TCPSSLOptions</span> <span class="token function">setIdleTimeout</span><span class="token punctuation">(</span><span class="token keyword">int</span> idleTimeout<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>idleTimeout <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">IllegalArgumentException</span><span class="token punctuation">(</span><span class="token string">&quot;idleTimeout must be &gt;= 0&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>idleTimeout <span class="token operator">=</span> idleTimeout<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+</code></pre></div><p>翻译一下：</p> <p>当tcp连接没有数据接收或者发送时，也就是空闲时，<code>idleTimeout</code> 决定了是否关闭该连接。如果 <code>idleTimeout</code> 的值为0，那么将不会关闭该连接；如果值为n（n &gt; 0)，那么将在n秒后关闭该连接。</p> <p><code>idleTimeout</code> 的默认值为0，也就是说默认情况下，tcp连接一直不会断开。</p> <p>在调用 <code>Vertx.createNetServer</code> 创建tcp服务，或者调用 <code>Vertx.createHttpServer</code> 创建http服务时，其接收的参数 <code>NetServerOptions</code>、<code>HttpServerOptions</code> 都是 <code>TCPSSLOptions</code> 的子类，都可以调用 <code>setIdleTimeout</code> 方法来设置 <code>idleTimeout</code>。</p> <p>如果我们的应用需要创建tcp服务，并且由客户端来控制连接的断开，那么使用默认的 <code>idleTimeout</code> 是没有问题的。<strong>但是如果我们创建的是http服务，那么请一定要设置合理的 <code>idleTimeout</code> 值，不要使用默认值，否则你将体验到接下来的经历～</strong></p> <h2 id="idletimeout-是如何干废服务器的"><a href="#idletimeout-是如何干废服务器的" class="header-anchor">#</a> idleTimeout 是如何干废服务器的？</h2> <p>疫情期间，用vertx做了一个http服务，用来接收各县区测温设备上报的数据。应用部署上线三天后，收到cpu告警，登录服务器，发现cpu占用达到80%多，内存占用1g多，晚上重启服务后，cpu及内存占用回到初始状态。</p> <p>又一个三天后，再次收到cpu告警，好吧，来活儿了，开始排查。</p> <br> <p><strong>服务器环境</strong></p> <ul><li>操作系统：Windows Server 2016</li> <li>CPU：1U，10线程</li> <li>内存：32G</li> <li>JDK：1.8</li></ul> <h3 id="_1-生成线程转储"><a href="#_1-生成线程转储" class="header-anchor">#</a> 1. 生成线程转储</h3> <p>一般情况下，CPU占用过高的原因大概率是线程引起的，比如死锁、死循环、线程数过多等。使用 <code>jstack</code> 命令生成线程转储。</p> <h3 id="_2-分析线程转储"><a href="#_2-分析线程转储" class="header-anchor">#</a> 2. 分析线程转储</h3> <p><strong><font size="6">2. 分析线程转储</font></strong></p> <div class="language- extra-class"><pre class="language-text"><code>2021-10-08 17:16:12
+Full thread dump Java HotSpot(TM) 64-Bit Server VM (25.261-b12 mixed mode):
+
+&quot;Thread-4487&quot; #4580 daemon prio=5 os_prio=0 tid=0x000001d70780c800 nid=0x140c runnable [0x000000ac9f6ff000]
+   java.lang.Thread.State: RUNNABLE
+	at sun.nio.ch.WindowsSelectorImpl$SubSelector.poll0(Native Method)
+	at sun.nio.ch.WindowsSelectorImpl$SubSelector.poll(Unknown Source)
+	at sun.nio.ch.WindowsSelectorImpl$SubSelector.access$2600(Unknown Source)
+	at sun.nio.ch.WindowsSelectorImpl$SelectThread.run(Unknown Source)
+
+&quot;Thread-4473&quot; #4566 daemon prio=5 os_prio=0 tid=0x000001d704070000 nid=0x1138 runnable [0x000000ac9e8ff000]
+   java.lang.Thread.State: RUNNABLE
+	at sun.nio.ch.WindowsSelectorImpl$SubSelector.poll0(Native Method)
+	at sun.nio.ch.WindowsSelectorImpl$SubSelector.poll(Unknown Source)
+	at sun.nio.ch.WindowsSelectorImpl$SubSelector.access$2600(Unknown Source)
+	at sun.nio.ch.WindowsSelectorImpl$SelectThread.run(Unknown Source)
+
+...(此处省略n行，这之间，都是名称为 Thread-xxx 的线程状态日志)
+
+&quot;vert.x-internal-blocking-12&quot; #94 prio=5 os_prio=0 tid=0x000001d778dcb000 nid=0x27f4 waiting on condition [0x000000ab818ff000]
+   java.lang.Thread.State: WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  &lt;0x000000068005f308&gt; (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+	at java.util.concurrent.locks.LockSupport.park(Unknown Source)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(Unknown Source)
+	at java.util.concurrent.LinkedBlockingQueue.take(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.getTask(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Unknown Source)
+
+&quot;vert.x-worker-thread-18&quot; #73 prio=5 os_prio=0 tid=0x000001d775d6e800 nid=0x714 waiting on condition [0x000000ab801fe000]
+   java.lang.Thread.State: WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  &lt;0x000000068001c5f0&gt; (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+	at java.util.concurrent.locks.LockSupport.park(Unknown Source)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(Unknown Source)
+	at java.util.concurrent.LinkedBlockingQueue.take(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.getTask(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Unknown Source)
+
+...(此处省略n行，这之间，都是名称为 vert.x-xxx 的线程状态日志)
+
+&quot;pool-10-thread-2&quot; #58 prio=5 os_prio=0 tid=0x000001d775d62000 nid=0x2b18 waiting on condition [0x000000abfeffe000]
+   java.lang.Thread.State: TIMED_WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  &lt;0x0000000680014a70&gt; (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+	at java.util.concurrent.locks.LockSupport.parkNanos(Unknown Source)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(Unknown Source)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.getTask(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+...(此处省略n行，这之间，都是名称为 pool-xxx 的线程状态日志)
+
+&quot;AMQP Connection 127.0.0.1:5672&quot; #54 prio=5 os_prio=0 tid=0x000001d7759bf800 nid=0x242c runnable [0x000000abfeefe000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.socketRead(Unknown Source)
+	at java.net.SocketInputStream.read(Unknown Source)
+	at java.net.SocketInputStream.read(Unknown Source)
+	at java.io.BufferedInputStream.fill(Unknown Source)
+	at java.io.BufferedInputStream.read(Unknown Source)
+	- locked &lt;0x0000000680016ea0&gt; (a java.io.BufferedInputStream)
+	at java.io.DataInputStream.readUnsignedByte(Unknown Source)
+	at com.rabbitmq.client.impl.Frame.readFrom(Frame.java:91)
+	at com.rabbitmq.client.impl.SocketFrameHandler.readFrame(SocketFrameHandler.java:184)
+	- locked &lt;0x0000000680016ec8&gt; (a java.io.DataInputStream)
+	at com.rabbitmq.client.impl.AMQConnection$MainLoop.run(AMQConnection.java:665)
+	at java.lang.Thread.run(Unknown Source)
+
+...(此处省略n行，这之间，都是名称为 AMQP Connection xxx 的线程状态日志)
+
+&quot;Service Thread&quot; #10 daemon prio=9 os_prio=0 tid=0x000001d774f71800 nid=0x154 runnable [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+&quot;C1 CompilerThread3&quot; #9 daemon prio=9 os_prio=2 tid=0x000001d773a4e000 nid=0xba0 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+&quot;C2 CompilerThread2&quot; #8 daemon prio=9 os_prio=2 tid=0x000001d773a43000 nid=0x29f4 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+&quot;C2 CompilerThread1&quot; #7 daemon prio=9 os_prio=2 tid=0x000001d773a40000 nid=0x2a30 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+&quot;C2 CompilerThread0&quot; #6 daemon prio=9 os_prio=2 tid=0x000001d773a3a800 nid=0x2924 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+&quot;Attach Listener&quot; #5 daemon prio=5 os_prio=2 tid=0x000001d7739ec800 nid=0x1810 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+&quot;Signal Dispatcher&quot; #4 daemon prio=9 os_prio=2 tid=0x000001d7739eb800 nid=0x2ae4 runnable [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+&quot;Finalizer&quot; #3 daemon prio=8 os_prio=1 tid=0x000001d7739c4800 nid=0x2bd0 in Object.wait() [0x000000abfbbff000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at java.lang.ref.ReferenceQueue.remove(Unknown Source)
+	- locked &lt;0x000000068004d8e8&gt; (a java.lang.ref.ReferenceQueue$Lock)
+	at java.lang.ref.ReferenceQueue.remove(Unknown Source)
+	at java.lang.ref.Finalizer$FinalizerThread.run(Unknown Source)
+
+&quot;Reference Handler&quot; #2 daemon prio=10 os_prio=2 tid=0x000001d77399a000 nid=0x10ec in Object.wait() [0x000000abfbafe000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	at java.lang.Object.wait(Unknown Source)
+	at java.lang.ref.Reference.tryHandlePending(Unknown Source)
+	- locked &lt;0x000000068018edf8&gt; (a java.lang.ref.Reference$Lock)
+	at java.lang.ref.Reference$ReferenceHandler.run(Unknown Source)
+
+&quot;VM Thread&quot; os_prio=2 tid=0x000001d773994800 nid=0x276c runnable 
+
+&quot;GC task thread#0 (ParallelGC)&quot; os_prio=0 tid=0x000001d756e24000 nid=0x24c runnable 
+
+&quot;GC task thread#1 (ParallelGC)&quot; os_prio=0 tid=0x000001d756e26800 nid=0x8fc runnable 
+
+&quot;GC task thread#2 (ParallelGC)&quot; os_prio=0 tid=0x000001d756e28000 nid=0x29a4 runnable 
+
+&quot;GC task thread#3 (ParallelGC)&quot; os_prio=0 tid=0x000001d756e2a000 nid=0x2b08 runnable 
+
+&quot;GC task thread#4 (ParallelGC)&quot; os_prio=0 tid=0x000001d756e2b000 nid=0x2af8 runnable 
+
+&quot;GC task thread#5 (ParallelGC)&quot; os_prio=0 tid=0x000001d756e2c800 nid=0x1964 runnable 
+
+&quot;GC task thread#6 (ParallelGC)&quot; os_prio=0 tid=0x000001d756e2f800 nid=0x8a4 runnable 
+
+&quot;GC task thread#7 (ParallelGC)&quot; os_prio=0 tid=0x000001d756e30800 nid=0x264c runnable 
+
+&quot;GC task thread#8 (ParallelGC)&quot; os_prio=0 tid=0x000001d756e31800 nid=0x2b54 runnable 
+
+&quot;VM Periodic Task Thread&quot; os_prio=2 tid=0x000001d774f85000 nid=0x164c waiting on condition 
+
+JNI global references: 880	
+</code></pre></div><p>上述是线程转储中的部分内容，分析程序代码，所有以 <code>vert.x-</code>、<code>AMOP Connection</code>、<code>pool-</code> 为前缀的线程都是程序内创建并且维护的，也就是合理的，日志结尾部分 <code>Service Thread</code>、<code>C1 CompilerThread</code>、<code>Attach Listener</code>、<code>GC task</code> 等线程由jvm维护，也是合理的。</p> <p><strong>一个非常不合理的地方在于那些 <code>Thread-xxx</code> 名称的线程</strong>，这些线程并不是由程序代码创建，并且数量达到了4400+，是非常明显的异常现象。</p> <h3 id="_3-分析线程大量创建的原因"><a href="#_3-分析线程大量创建的原因" class="header-anchor">#</a> 3. 分析线程大量创建的原因</h3> <div class="language- extra-class"><pre class="language-text"><code>&quot;Thread-4487&quot; #4580 daemon prio=5 os_prio=0 tid=0x000001d70780c800 nid=0x140c runnable [0x000000ac9f6ff000]
+   java.lang.Thread.State: RUNNABLE
+	at sun.nio.ch.WindowsSelectorImpl$SubSelector.poll0(Native Method)
+	at sun.nio.ch.WindowsSelectorImpl$SubSelector.poll(Unknown Source)
+	at sun.nio.ch.WindowsSelectorImpl$SubSelector.access$2600(Unknown Source)
+	at sun.nio.ch.WindowsSelectorImpl$SelectThread.run(Unknown Source)
+</code></pre></div><p>查看异常线程的详细堆栈信息，发现其发生位置在 <code>sun.nio.ch.WindowsSelectorImpl</code> 类，在经过查找相关资料后，确认该类为jdk的nio模型在windows系统上的实现，分析其源码（<a href="https://blog.csdn.net/liu_005/article/details/86253576" target="_blank" rel="noopener noreferrer">参考文章<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> ），简单解释它的工作原理：在windows平台上，通过辅助线程来管理nio模型中channel的注册和注销，一个辅助线程管理一定数量的channel，channel数量越多，就会创建更多的辅助线程；当channel数量减少，也会销毁对应的辅助线程。</p> <br> <p>存在大量辅助线程的原因可能有2点：</p> <ul><li>① 存在大量未注销的channel</li> <li>② jdk自身bug导致，在查询资料时，发现jdk的nio模型在windows下的实现确实存在bug，可能导致一直创建辅助线程，从而cpu占用飙升，这个问题好像到jdk1.8中也没有完全解决，只是很小的概率才会发生。</li></ul> <p>虽然原因②很有可能，但是毕竟它是概率性的，而对于我的应用来说，这个问题基本是必会发生的，那么就先从原因①着手进行分析。</p> <p>直接分析是否存在大量未注销的channel可能有些无从下手，但是应用状态的异常不只在于cpu占用，还有内存占用的异常也非常明显，比正常状态增加了好几倍，那么接下来就从内存下手。</p> <h3 id="_4-生成堆转储"><a href="#_4-生成堆转储" class="header-anchor">#</a> 4. 生成堆转储</h3> <p>使用 <code>jmap</code> 命令生成堆转储</p> <h3 id="_5-分析堆转储"><a href="#_5-分析堆转储" class="header-anchor">#</a> 5. 分析堆转储</h3> <p>使用 <a href="http://www.eclipse.org/mat/downloads.php" target="_blank" rel="noopener noreferrer">Eclipse Memory Analyzer<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> 工具打开堆转储文件，查看分析结果</p> <img src="/img/vertx/10.1.png" style="zoom:100%;"> <p>可以看到， <code>io.netty.channel.socket.nio.NioSocketChannel</code> 类存在大量的实例，占用了 87.5% 的堆内存，点击 Details 查看详细信息：</p> <img src="/img/vertx/10.2.png" style="zoom:100%;"> <p>查看实例引用情况，所有的channel实例都被 <code>sun.nio.WindowsSelectorImpl</code> 引用，而这恰好是导致辅助线程大量创建的原因。</p> <p>到这里，就可以确定问题的原因在于存在大量未注销的channel。</p> <h3 id="_6-检查程序代码"><a href="#_6-检查程序代码" class="header-anchor">#</a> 6. 检查程序代码</h3> <p>既然确定了问题的原因在于存在大量未注销的channel，那么就进一步分析程序逻辑。</p> <p>在程序中，基于vertx-web模块创建的http服务使用了nio，用来接收测温设备的数据，那么就需要进一步排查是否在处理http请求时存在问题，导致channel一直无法释放。</p> <p>最后，发现在http的FailureHandler，也就是异常处理器中，对于部分请求处理中出现的异常，未进行正确的响应：</p> <img src="/img/vertx/10.3.png" style="zoom:100%;"> <p>修改程序，保证所有发生异常的请求都能响应：</p> <img src="/img/vertx/10.4.png" style="zoom:100%;"> <h3 id="_7-验证问题是否解决"><a href="#_7-验证问题是否解决" class="header-anchor">#</a> 7. 验证问题是否解决</h3> <p>现在是2021-10-09，将程序重新打包部署，持续观察一段时间，等过几天后再来更新结果。😅</p> <h3 id="_8-问题还在-继续分析吧"><a href="#_8-问题还在-继续分析吧" class="header-anchor">#</a> 8. 问题还在，继续分析吧</h3> <p>现在是2021-10-21，更新下程序代码修改后的结果。</p> <p>很遗憾，问题并没有得到解决😭，只好继续进一步分析。</p> <p>再次打开MAT，分析堆转储。</p> <img src="/img/vertx/10.5.png" style="zoom:100%;"> <p>查看程序中实例数量，<code>NioSockerChannel</code> 实例数达到了97940，每一个 <code>NioSockerChannel</code> 本质上都对应一个连接。而考虑实际场景，测温设备总数大约10000个，并且是http协议，请求在响应完成后应该关闭，第6步的代码优化也保证了所有请求都能够响应，这个实例数很明显是不正常的，这还只是程序运行了大概4个小时的堆转储。</p> <br> <img src="/img/vertx/10.6.png" style="zoom:100%;"> <p>进一步查看 <code>NioSockerChannel</code> 实例的引用链，可以发现每个 <code>NioSockerChannel</code> 实例都被多个 <code>WindowsSelectorImpl</code> 实例引用，而 <code>WindowsSelectorImpl</code> 实例运行在名称为 <code>SelectThread</code> 的线程上。</p> <p><code>WindowsSelectorImpl</code> 是java nio在windows上的实现，也就是说，这些 <code>NioSockerChannel</code> 都是存活状态，导致系统底层要不断的轮询这些channel，查看是否有新的事件需要处理，那么这些channel为什么没有关闭呢？当前服务为http服务，客户端请求后，创建channel进行处理，响应完成后，channel理应关闭才对。</p> <p>查看创建http服务的代码，可以通过 <code>HttpServerOptions</code> 设置一些参数</p> <img src="/img/vertx/10.7.png" style="zoom:100%;"> <p>那好，查看HttpServerOptions源码，发现其内部没有与channel相关的参数，进一步查找其父类NetServerOptions，也没有找到有用的信息，再继续查找父类TCPSSLOptions，发现了这个老6属性：<code>idleTimeout</code></p> <img src="/img/vertx/10.8.png" style="zoom:100%;"> <p>找到其setter方法，嗯，<code>idleTimeout</code> 用来控制空闲连接的超时时长，达到超时时长后该连接将被关闭；默认超时时长为0，即永不超时，也就是说连接永不关闭：</p> <img src="/img/vertx/10.9.png" style="zoom:100%;"> <p>那好，修改创建http服务的代码，设置空闲连接的超时时长：</p> <img src="/img/vertx/10.10.png" style="zoom:100%;"> <p>更新部署应用，几天后再更新结果。</p> <h3 id="_9-问题解决"><a href="#_9-问题解决" class="header-anchor">#</a> 9. 问题解决</h3> <p>十天了，自从修改空闲连接的超时时长后，cpu占用稳定在1%-5%，内存占用200m-600m，上下班高峰期，测试设备上报数据量大，cpu和内存占用会升到，但是整体已经稳定了。进一步查看线程转储及堆转储，一切正常，问题解决！🎉🎉🎉</p> <p>这就是我被 <code>idleTimeout</code> 干废服务器的经历，所以说，如果用vertx创建http服务，必须设置 <code>idleTimeout</code>。</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/java/vertx/" class="prev router-link-active">
+        简介
+      </a></span> <span class="next"><a href="/java/vertx/default/在vertx中使用虚拟线程.html">
+        在vertx中使用虚拟线程
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.a38c516a.js" defer></script><script src="/assets/js/2.ba6b1436.js" defer></script><script src="/assets/js/1.2d4ce02f.js" defer></script><script src="/assets/js/100.2a4f0938.js" defer></script>
+  </body>
+</html>

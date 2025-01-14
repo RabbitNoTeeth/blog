@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>线程池的使用 | 刘新冬的博客</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <link rel="icon" href="/img/logo.png">
+    <meta name="description" content="线程池的使用">
+    
+    <link rel="preload" href="/assets/css/0.styles.7ecebcba.css" as="style"><link rel="preload" href="/assets/js/app.a38c516a.js" as="script"><link rel="preload" href="/assets/js/2.ba6b1436.js" as="script"><link rel="preload" href="/assets/js/1.2d4ce02f.js" as="script"><link rel="preload" href="/assets/js/92.bac05565.js" as="script"><link rel="prefetch" href="/assets/js/10.14082ad8.js"><link rel="prefetch" href="/assets/js/100.2a4f0938.js"><link rel="prefetch" href="/assets/js/101.8a62150f.js"><link rel="prefetch" href="/assets/js/102.35a7e2ea.js"><link rel="prefetch" href="/assets/js/103.faae61d0.js"><link rel="prefetch" href="/assets/js/104.c27f3d0b.js"><link rel="prefetch" href="/assets/js/105.9326a988.js"><link rel="prefetch" href="/assets/js/106.3dc22e61.js"><link rel="prefetch" href="/assets/js/107.0ceb8376.js"><link rel="prefetch" href="/assets/js/108.c36e9500.js"><link rel="prefetch" href="/assets/js/11.d36ef131.js"><link rel="prefetch" href="/assets/js/12.c5493e01.js"><link rel="prefetch" href="/assets/js/13.430eca0c.js"><link rel="prefetch" href="/assets/js/14.c88f86cd.js"><link rel="prefetch" href="/assets/js/15.e1cc950a.js"><link rel="prefetch" href="/assets/js/16.b699b95c.js"><link rel="prefetch" href="/assets/js/17.b99ba729.js"><link rel="prefetch" href="/assets/js/18.7dff4b06.js"><link rel="prefetch" href="/assets/js/19.ff06d982.js"><link rel="prefetch" href="/assets/js/20.7de9995c.js"><link rel="prefetch" href="/assets/js/21.cb9bdcf0.js"><link rel="prefetch" href="/assets/js/22.16dfd536.js"><link rel="prefetch" href="/assets/js/23.eb560dbc.js"><link rel="prefetch" href="/assets/js/24.661e2539.js"><link rel="prefetch" href="/assets/js/25.c7f21645.js"><link rel="prefetch" href="/assets/js/26.64d829b6.js"><link rel="prefetch" href="/assets/js/27.4b3a16c0.js"><link rel="prefetch" href="/assets/js/28.2692df26.js"><link rel="prefetch" href="/assets/js/29.ce82418b.js"><link rel="prefetch" href="/assets/js/3.00356991.js"><link rel="prefetch" href="/assets/js/30.2051ef3b.js"><link rel="prefetch" href="/assets/js/31.34e09941.js"><link rel="prefetch" href="/assets/js/32.e50cc8ec.js"><link rel="prefetch" href="/assets/js/33.9461dbb1.js"><link rel="prefetch" href="/assets/js/34.e4da7325.js"><link rel="prefetch" href="/assets/js/35.a13a0b57.js"><link rel="prefetch" href="/assets/js/36.06d083bd.js"><link rel="prefetch" href="/assets/js/37.f7918bab.js"><link rel="prefetch" href="/assets/js/38.86961f10.js"><link rel="prefetch" href="/assets/js/39.8113a23c.js"><link rel="prefetch" href="/assets/js/4.7fa5c39e.js"><link rel="prefetch" href="/assets/js/40.434f5479.js"><link rel="prefetch" href="/assets/js/41.a4cbee5e.js"><link rel="prefetch" href="/assets/js/42.351f521c.js"><link rel="prefetch" href="/assets/js/43.5f3ad053.js"><link rel="prefetch" href="/assets/js/44.d88da63e.js"><link rel="prefetch" href="/assets/js/45.a9b5d36b.js"><link rel="prefetch" href="/assets/js/46.845f8e9a.js"><link rel="prefetch" href="/assets/js/47.50e3be7d.js"><link rel="prefetch" href="/assets/js/48.cb688c31.js"><link rel="prefetch" href="/assets/js/49.e239b0d8.js"><link rel="prefetch" href="/assets/js/5.8a935be6.js"><link rel="prefetch" href="/assets/js/50.7729a443.js"><link rel="prefetch" href="/assets/js/51.a5bfe490.js"><link rel="prefetch" href="/assets/js/52.94334c08.js"><link rel="prefetch" href="/assets/js/53.6c2661e4.js"><link rel="prefetch" href="/assets/js/54.9b31e7a4.js"><link rel="prefetch" href="/assets/js/55.4fac431c.js"><link rel="prefetch" href="/assets/js/56.a00bf0ab.js"><link rel="prefetch" href="/assets/js/57.92ae460e.js"><link rel="prefetch" href="/assets/js/58.f7f0da5f.js"><link rel="prefetch" href="/assets/js/59.7e810fa1.js"><link rel="prefetch" href="/assets/js/6.c6745fa4.js"><link rel="prefetch" href="/assets/js/60.ea3fa83f.js"><link rel="prefetch" href="/assets/js/61.d78f5084.js"><link rel="prefetch" href="/assets/js/62.bd986f10.js"><link rel="prefetch" href="/assets/js/63.ae3536c2.js"><link rel="prefetch" href="/assets/js/64.492fcc89.js"><link rel="prefetch" href="/assets/js/65.2ebe492f.js"><link rel="prefetch" href="/assets/js/66.b9c8f37b.js"><link rel="prefetch" href="/assets/js/67.1d25c263.js"><link rel="prefetch" href="/assets/js/68.3b9d23fa.js"><link rel="prefetch" href="/assets/js/69.2816cb57.js"><link rel="prefetch" href="/assets/js/7.f127ebf8.js"><link rel="prefetch" href="/assets/js/70.ac77f002.js"><link rel="prefetch" href="/assets/js/71.0be7a2dd.js"><link rel="prefetch" href="/assets/js/72.6b6c0f37.js"><link rel="prefetch" href="/assets/js/73.6fd98879.js"><link rel="prefetch" href="/assets/js/74.07e6199b.js"><link rel="prefetch" href="/assets/js/75.496aef35.js"><link rel="prefetch" href="/assets/js/76.85cd6aca.js"><link rel="prefetch" href="/assets/js/77.1e1f6d01.js"><link rel="prefetch" href="/assets/js/78.386f7748.js"><link rel="prefetch" href="/assets/js/79.c73f26bb.js"><link rel="prefetch" href="/assets/js/80.73e2f1b9.js"><link rel="prefetch" href="/assets/js/81.374b0aea.js"><link rel="prefetch" href="/assets/js/82.8ea9351f.js"><link rel="prefetch" href="/assets/js/83.9367f8bf.js"><link rel="prefetch" href="/assets/js/84.9b0667ae.js"><link rel="prefetch" href="/assets/js/85.441841fb.js"><link rel="prefetch" href="/assets/js/86.b33f285d.js"><link rel="prefetch" href="/assets/js/87.1204c179.js"><link rel="prefetch" href="/assets/js/88.51fe8179.js"><link rel="prefetch" href="/assets/js/89.94101060.js"><link rel="prefetch" href="/assets/js/90.e4ce6df4.js"><link rel="prefetch" href="/assets/js/91.c14bd802.js"><link rel="prefetch" href="/assets/js/93.98011bc4.js"><link rel="prefetch" href="/assets/js/94.614bbf82.js"><link rel="prefetch" href="/assets/js/95.9fc69c4a.js"><link rel="prefetch" href="/assets/js/96.09e8cb5f.js"><link rel="prefetch" href="/assets/js/97.adbe6a5a.js"><link rel="prefetch" href="/assets/js/98.9b0a2ee0.js"><link rel="prefetch" href="/assets/js/99.6806f377.js"><link rel="prefetch" href="/assets/js/vendors~docsearch.162bdabc.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.7ecebcba.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/img/logo.png" alt="刘新冬的博客" class="logo"> <span class="site-name can-hide">刘新冬的博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>JavaSE</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/java/javase/" aria-current="page" class="sidebar-link">简介</a></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span>集合</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/java/javase/collection/default/Collection.html" class="sidebar-link">Collection</a></li><li><a href="/java/javase/collection/default/List.html" class="sidebar-link">List</a></li><li><a href="/java/javase/collection/default/Map.html" class="sidebar-link">Map</a></li><li><a href="/java/javase/collection/default/Queue.html" class="sidebar-link">Queue</a></li><li><a href="/java/javase/collection/default/Set.html" class="sidebar-link">Set</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading open"><span>并发</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/java/javase/concurrent/default/设计线程安全的类.html" class="sidebar-link">设计线程安全的类</a></li><li><a href="/java/javase/concurrent/default/基础构建模块.html" class="sidebar-link">基础构建模块</a></li><li><a href="/java/javase/concurrent/default/任务执行.html" class="sidebar-link">任务执行</a></li><li><a href="/java/javase/concurrent/default/取消与关闭.html" class="sidebar-link">取消与关闭</a></li><li><a href="/java/javase/concurrent/default/线程池的使用.html" class="active sidebar-link">线程池的使用</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/java/javase/concurrent/default/线程池的使用.html#_1-在任务与执行策略之间的隐形耦合" class="sidebar-link">1. 在任务与执行策略之间的隐形耦合</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/java/javase/concurrent/default/线程池的使用.html#_1-1-线程饥饿死锁" class="sidebar-link">1.1 线程饥饿死锁</a></li><li class="sidebar-sub-header"><a href="/java/javase/concurrent/default/线程池的使用.html#_1-2-运行时间较长的任务" class="sidebar-link">1.2 运行时间较长的任务</a></li></ul></li><li class="sidebar-sub-header"><a href="/java/javase/concurrent/default/线程池的使用.html#_2-设置线程池的大小" class="sidebar-link">2. 设置线程池的大小</a></li><li class="sidebar-sub-header"><a href="/java/javase/concurrent/default/线程池的使用.html#_3-配置threadpoolexecutor" class="sidebar-link">3. 配置ThreadPoolExecutor</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/java/javase/concurrent/default/线程池的使用.html#_3-1-线程的创建与销毁" class="sidebar-link">3.1 线程的创建与销毁</a></li><li class="sidebar-sub-header"><a href="/java/javase/concurrent/default/线程池的使用.html#_3-2-管理队列任务" class="sidebar-link">3.2 管理队列任务</a></li><li class="sidebar-sub-header"><a href="/java/javase/concurrent/default/线程池的使用.html#_3-3-饱和策略" class="sidebar-link">3.3 饱和策略</a></li><li class="sidebar-sub-header"><a href="/java/javase/concurrent/default/线程池的使用.html#_3-4-线程工厂" class="sidebar-link">3.4 线程工厂</a></li><li class="sidebar-sub-header"><a href="/java/javase/concurrent/default/线程池的使用.html#_3-5-在调用构造函数后再定制threadpoolexecutor" class="sidebar-link">3.5 在调用构造函数后再定制ThreadPoolExecutor</a></li></ul></li><li class="sidebar-sub-header"><a href="/java/javase/concurrent/default/线程池的使用.html#_4-扩展threadpoolexecutor" class="sidebar-link">4. 扩展ThreadPoolExecutor</a></li><li class="sidebar-sub-header"><a href="/java/javase/concurrent/default/线程池的使用.html#_5-递归算法的并行化" class="sidebar-link">5. 递归算法的并行化</a></li></ul></li><li><a href="/java/javase/concurrent/default/死锁.html" class="sidebar-link">死锁</a></li><li><a href="/java/javase/concurrent/default/性能与可伸缩性.html" class="sidebar-link">性能与可伸缩性</a></li><li><a href="/java/javase/concurrent/default/显式锁.html" class="sidebar-link">显式锁</a></li><li><a href="/java/javase/concurrent/default/构建自定义的同步工具.html" class="sidebar-link">构建自定义的同步工具</a></li><li><a href="/java/javase/concurrent/default/原子变量与非阻塞同步机制.html" class="sidebar-link">原子变量与非阻塞同步机制</a></li><li><a href="/java/javase/concurrent/default/Executor框架.html" class="sidebar-link">Executor框架</a></li><li><a href="/java/javase/concurrent/default/Future框架.html" class="sidebar-link">Future框架</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span>其他</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/java/javase/other/default/static关键字.html" class="sidebar-link">static关键字</a></li><li><a href="/java/javase/other/default/泛型机制.html" class="sidebar-link">泛型机制</a></li><li><a href="/java/javase/other/default/解决hash冲突的常用方法.html" class="sidebar-link">解决hash冲突的常用方法</a></li><li><a href="/java/javase/other/default/三元运算符与类型转换.html" class="sidebar-link">三元运算符与类型转换</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span>IO</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/java/javase/io/default/NIO概述.html" class="sidebar-link">NIO概述</a></li></ul></section></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><p>只有当任务都是同类型的并且相互独立时，线程池的性能才能达到最佳。</p> <p>如果某些任务依赖于其他的任务，那么会要求线程池足够大，从而确保它们依赖任务不会被放入等待队列中或者被拒绝，而采用线程封闭机制的任务需要串行执行。</p> <h2 id="_1-在任务与执行策略之间的隐形耦合"><a href="#_1-在任务与执行策略之间的隐形耦合" class="header-anchor">#</a> 1. 在任务与执行策略之间的隐形耦合</h2> <h3 id="_1-1-线程饥饿死锁"><a href="#_1-1-线程饥饿死锁" class="header-anchor">#</a> 1.1 线程饥饿死锁</h3> <p>如果线程池中的任务需要无限期的等待一些必须由池中其他任务才能提供的资源或条件，例如某个任务等待另一个任务的返回值或执行结果，那么除非线程池足够大，否则将发生线程饥饿死锁。</p> <div class="language- extra-class"><pre class="language-text"><code>****** 程序清单8-1 在单线程Executor中任务发生死锁 ******
+
+public class ThreadDeadLock{
+    ExecutorService exec = Executors.newSingleThreadExecutor();
+    
+    public class RenderPageTask implements Callable&lt;String&gt;{
+        @Override
+        public String call() throws Exception {
+            Future&lt;String&gt; header,footer;
+            header = exec.submit(new LoadFileTask(&quot;header.html&quot;));
+            footer = exec.submit(new LoadFileTask(&quot;footer.html&quot;));
+            String page = renderBody();
+            // 将发生死锁-由于任务在等待子任务的结果
+            return header.get() + page + footer.get();
+        }
+    }
+}
+</code></pre></div><h3 id="_1-2-运行时间较长的任务"><a href="#_1-2-运行时间较长的任务" class="header-anchor">#</a> 1.2 运行时间较长的任务</h3> <p>有一项技术可以缓解执行时间较长任务造成的影响，即限定任务等待资源的时间，而不是无限制的等待。如果在线程之中总是充满了被阻塞的任务，那么也可能表明线程池的规模过小。</p> <h2 id="_2-设置线程池的大小"><a href="#_2-设置线程池的大小" class="header-anchor">#</a> 2. 设置线程池的大小</h2> <p>对于计算密集型的任务，在拥有N个处理器的系统上，当线程池的大小为N+1时通常能实现最优的利用率。</p> <p>对于包括I/O操作或者其他阻塞的操作任务，由于线程并不会一直执行，因此线程池的规模应该更大。</p> <p>还有一个线程池大小的参考公式
+$$
+N(线程池大小) = N(cpu数量) * U(cpu利用率) * ( 1 + W(任务等待时间)/C(任务计算完成时间) )
+$$</p> <h2 id="_3-配置threadpoolexecutor"><a href="#_3-配置threadpoolexecutor" class="header-anchor">#</a> 3. 配置ThreadPoolExecutor</h2> <p><code>ThreadPoolExecutor</code>是一个灵活的、稳定的线程池，允许进行各种定制。如果默认的执行策略不能满足需求，那么可以通过<code>ThreadPoolExecutor</code>的构造函数来实例化一个对象，并根据自己的需求来定制。</p> <h3 id="_3-1-线程的创建与销毁"><a href="#_3-1-线程的创建与销毁" class="header-anchor">#</a> 3.1 线程的创建与销毁</h3> <p>线程池的基本大小也就是线程池的目标大小，即在没有任务执行时线程池的大小，并且只有在工作列满了的情况下才会创建超出这个数量的线程。</p> <p>线程池的最大大小表示可同时活动的线程数量的上限，如果某个线程的空闲时间超过了存活时间，那么该线程被标记为可回收的，并且当线程是当前大小超过了基本大小时，这个线程将被终止。</p> <h3 id="_3-2-管理队列任务"><a href="#_3-2-管理队列任务" class="header-anchor">#</a> 3.2 管理队列任务</h3> <p><code>ThreadPoolExecutor</code>允许提供一个<code>BlockingQueue</code>来保存等待执行的任务。</p> <p>基本的任务排队方法有3种：无界队列、有界队列和同步移交。</p> <p><code>newFixedThreadPool</code>和<code>newSingleThreadExector</code>在默认情况下使用一个无界的<code>LinkedBlockingQueue</code>。如果所有工作者线程都处于忙碌状态，那么任务将在队列中等候，如果任务持续快速的到达，并且超过了线程池处理它们的速度，那么队列将无限制的增加。</p> <p>在使用有界的工作队列时，队列的大小与线程池的大小必须一起调节，如果线程池较小而队列较大，那么有助于减少内存使用量，降低CPU的使用率，同时还可以减少上下文切换，但付出的代价是可能会限制吞吐量。</p> <p>对于非常大的或者无界的线程池，可以通过使用<code>SynchronousQueue</code>来避免任务排队，以及直接将任务从生产者移交给工作者线程。<code>SynchronousQueue</code>不是一个真正的队列，而是一种在线程之间进行移交的机制，要将一个元素放入其中，必须有另一个线程正在等待接受这个元素，如果没有线程正在等待，并且线程的当前大小小于最大值，那么将创建一个新的线程，否则根据饱和策略，这个任务将被拒绝。使用直接移交将更高效，因为任务会直接移交给执行它的线程，而不是被首先放在队列中，然后由工作者线程从队列中提取该任务，只有当线程池是无限的或者可以拒绝任务时，<code>SynchronousQueue</code>才有实际价值，在<code>newCachedThreadPool</code>工厂方法中就是用了<code>SynchronousQueue</code>。</p> <p>只有当任务相互独立时，为线程池或工作队列设置界限才是合理的，如果任务之间存在依赖性，那么有界的线程池或队列就可能导致线程饥饿死锁问题，此时应该使用无界的线程池。</p> <h3 id="_3-3-饱和策略"><a href="#_3-3-饱和策略" class="header-anchor">#</a> 3.3 饱和策略</h3> <ol><li><p>“终止”策略</p> <p>默认的饱和策略，该策略将抛出未检查的<code>RejectedExecutionException</code>，调用者可以捕获这个异常，然后根据需求编写自己的处理代码。当新提交的任务无法保存到队列中等待执行时，”抛弃”策略会悄悄抛弃该任务。</p></li> <li><p>“抛弃最旧的”策略</p> <p>会抛弃下一个将被执行的任务，然后尝试重新提交新的任务（如果工作队列是一个优先队列，那么”抛弃最旧的”策略将导致抛弃优先级最高的任务!!!）。</p></li> <li><p>“调用者运行”策略</p> <p>实现了一种机制，该策略既不会抛弃任务，也不会抛出异常，而是将某些任务回退到调用者，从而降低新任务的流量，它不会在线程池的某个线程中执行新提交的任务，而是在一个调用了execute的线程中执行的任务。</p></li></ol> <div class="language- extra-class"><pre class="language-text"><code>****** 程序清单8-4 使用Semaphore来控制任务的提交速率 ******
+
+public class BoundedExecutor{
+    private final Executor exec;
+    private final Semaphore semaphore;
+
+    public BoundedExecutor(Executor exec, int bound) {
+        this.exec = exec;
+        this.semaphore = new Semaphore(bound);
+    }
+    
+    public void submitTask(final Runnable command) throws InterruptedException {
+        semaphore.acquire();
+        try{
+            exec.execute(new Runnable() {
+                @Override
+                public void run() {
+                    try{
+                        command.run();
+                    }finally {
+                        semaphore.release();
+                    }
+                }
+            });
+        }catch (RejectedExecutionException){
+            semaphore.release();
+        }
+    }
+}
+</code></pre></div><h3 id="_3-4-线程工厂"><a href="#_3-4-线程工厂" class="header-anchor">#</a> 3.4 线程工厂</h3> <div class="language- extra-class"><pre class="language-text"><code>****** 程序清单8-6 自定义的线程工厂 ******
+
+public class MyThreadFactory implements ThreadFactory{
+    private final String poolName;
+
+    public MyThreadFactory(String poolName) {
+        this.poolName = poolName;
+    }
+
+    @Override
+    public Thread newThread(Runnable r) {
+        return new MyAppThread(r,poolName);
+    }
+}
+****** 程序清单8-7 定制Thread基类 ******
+
+public class MyAppThread extends Thread{
+    public static final String DEFAULT_NAME = &quot;MyAppThread&quot;;
+    private static volatile boolean debugLifecycle = false;
+    private static final AtomicInteger created = new AtomicInteger();
+    private static final AtomicInteger alive = new AtomicInteger();
+    private static final Logger log = Logger.getAnonymousLogger();
+    
+    public MyAppThread(Runnable r){
+        this(r,DEFAULT_NAME);
+    }
+
+    public MyAppThread(Runnable r, String name) {
+        super(r,name+&quot;-&quot;+created.incrementAndGet());
+        setUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler(){
+            @Override
+            public void uncaughtException(Thread t, Throwable e) {
+                log.log(Level.SEVERE,&quot;UNCAUGHT in thread&quot;+t.getName(),e);
+            }
+        });
+    }
+
+    @Override
+    public void run() {
+        boolean debug = debugLifecycle;
+        if(debug)
+            log.log(Level.SEVERE,&quot;created&quot;+getName());
+        try{
+            alive.incrementAndGet();
+            super.run();
+        }finally {
+            alive.decrementAndGet();
+            if(debug)
+                log.log(Level.FINE,&quot;exiting&quot;+getName());
+        }
+    }
+    
+    public static int getThreadsCreated(){
+        return created.get();
+    }
+    
+    public static int getThreadsAlive(){
+        return alive.get();
+    }
+    
+    public static boolean getDebug(){
+        return debugLifecycle;
+    }
+    
+    public static void setDebug(boolean b){
+        debugLifecycle = b;
+    }
+}
+</code></pre></div><h3 id="_3-5-在调用构造函数后再定制threadpoolexecutor"><a href="#_3-5-在调用构造函数后再定制threadpoolexecutor" class="header-anchor">#</a> 3.5 在调用构造函数后再定制ThreadPoolExecutor</h3> <div class="language- extra-class"><pre class="language-text"><code>****** 程序清单8-8 对通过标准工厂方法创建的Executor进行修改 ******
+
+ExecutorService exec = Executors.newCachedThreadPool();
+if(exec instanseof ThreadPoolExecutor){
+    ((ThreadPoolExecutor)exec).setCorePoolSize(10);
+}
+</code></pre></div><p>如果将<code>ExecutorService</code>暴露给不信任的代码，又不希望对其进行修改，就可以通过<code>unconfigurableExecutorService</code>来包装它。</p> <h2 id="_4-扩展threadpoolexecutor"><a href="#_4-扩展threadpoolexecutor" class="header-anchor">#</a> 4. 扩展ThreadPoolExecutor</h2> <p><code>ThreadPoolExecutor</code>提供了扩展方法：<code>brforeExecute</code> 、<code>afterExecute</code> 和 <code>ternimated</code>。</p> <p>无论任务是从run中正常返回，还是抛出一个异常而返回，<code>afterExecute</code>都会被调用（如果任务在完成后带有一个error，那么就不会调用afterExecute）。如果<code>brforeExecute</code> 抛出一个<code>RuntimeException</code>，那么任务将不被执行，并且<code>afterExecute</code>也不会被调用。</p> <p>在线程池完成关闭操作时调用<code>terminated</code>，可以释放Executor在其生命周期里分配的各种资源。</p> <div class="language- extra-class"><pre class="language-text"><code>****** 程序清单8-9 增加了日志和计时功能的线程池 ******
+
+public class TimingThreadPool extends ThreadPoolExecutor{
+    private final ThreadLocal&lt;Long&gt; startTime = new ThreadLocal&lt;&gt;();
+    private final Logger log = Logger.getLogger(&quot;TimingThreadPool&quot;);
+    private final AtomicLong numTasks = new AtomicLong();
+    private final AtomicLong totalTime = new AtomicLong();
+
+    @Override
+    protected void beforeExecute(Thread t, Runnable r) {
+        super.beforeExecute(t,r);
+        log.fine(String.format(&quot;Thread %s: start %s&quot;,t,r));
+        startTime.set(System.nanoTime());
+    }
+
+    @Override
+    protected void afterExecute(Runnable r, Throwable t) {
+        try{
+            long endTime = System.nanoTime();
+            long taskTime = endTime - startTime.get();
+            numTasks.incrementAndGet();
+            totalTime.addAndGet(taskTime);
+            log.fine(String.format(&quot;Thread %s: end %s, time=%dns&quot;,t,r,taskTime));
+        }finally {
+            super.afterExecute(r,t);
+        }
+    }
+
+    @Override
+    protected void terminated() {
+        try{
+            log.info(String.format(&quot;Terminated: avg time=%dns&quot;,totalTime.get()/numTasks.get()));
+        }finally {
+            super.terminated();
+        }
+    }
+}
+</code></pre></div><h2 id="_5-递归算法的并行化"><a href="#_5-递归算法的并行化" class="header-anchor">#</a> 5. 递归算法的并行化</h2> <p>当串行循环中的各个迭代操作之间彼此独立，并且每个迭代操作执行的工作量比管理一个新任务时带来的开销更多，那么这个串行循环就适合并行化。</p> <div class="language- extra-class"><pre class="language-text"><code>****** 程序清单8-11 将串行递归转换为并行递归 ******
+
+public &lt;T&gt; void sequentialRecursive(List&lt;Node&lt;T&gt;&gt; nodes, Collection&lt;T&gt; results){
+    for(Node&lt;T&gt; n:nodes){
+        results.add(n.compute());
+        sequentialRecursive(n.getChildren(),results);
+    }
+}
+
+public &lt;T&gt; void parallelRecursive(final Executor exec,List&lt;Node&lt;T&gt;&gt; nodes,final Collection&lt;T&gt; results){
+    for(Node&lt;T&gt; n:nodes){
+        exec.execute(new Runnable() {
+            @Override
+            public void run() {
+                results.add(n,compute());
+            }
+        });
+    }
+    parallelRecursive(exec,n.getChildren(),results);
+}
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/java/javase/concurrent/default/取消与关闭.html" class="prev">
+        取消与关闭
+      </a></span> <span class="next"><a href="/java/javase/concurrent/default/死锁.html">
+        死锁
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.a38c516a.js" defer></script><script src="/assets/js/2.ba6b1436.js" defer></script><script src="/assets/js/1.2d4ce02f.js" defer></script><script src="/assets/js/92.bac05565.js" defer></script>
+  </body>
+</html>

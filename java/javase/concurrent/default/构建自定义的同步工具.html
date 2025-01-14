@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>构建自定义的同步工具 | 刘新冬的博客</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <link rel="icon" href="/img/logo.png">
+    <meta name="description" content="构建自定义的同步工具">
+    
+    <link rel="preload" href="/assets/css/0.styles.7ecebcba.css" as="style"><link rel="preload" href="/assets/js/app.a38c516a.js" as="script"><link rel="preload" href="/assets/js/2.ba6b1436.js" as="script"><link rel="preload" href="/assets/js/1.2d4ce02f.js" as="script"><link rel="preload" href="/assets/js/90.e4ce6df4.js" as="script"><link rel="prefetch" href="/assets/js/10.14082ad8.js"><link rel="prefetch" href="/assets/js/100.2a4f0938.js"><link rel="prefetch" href="/assets/js/101.8a62150f.js"><link rel="prefetch" href="/assets/js/102.35a7e2ea.js"><link rel="prefetch" href="/assets/js/103.faae61d0.js"><link rel="prefetch" href="/assets/js/104.c27f3d0b.js"><link rel="prefetch" href="/assets/js/105.9326a988.js"><link rel="prefetch" href="/assets/js/106.3dc22e61.js"><link rel="prefetch" href="/assets/js/107.0ceb8376.js"><link rel="prefetch" href="/assets/js/108.c36e9500.js"><link rel="prefetch" href="/assets/js/11.d36ef131.js"><link rel="prefetch" href="/assets/js/12.c5493e01.js"><link rel="prefetch" href="/assets/js/13.430eca0c.js"><link rel="prefetch" href="/assets/js/14.c88f86cd.js"><link rel="prefetch" href="/assets/js/15.e1cc950a.js"><link rel="prefetch" href="/assets/js/16.b699b95c.js"><link rel="prefetch" href="/assets/js/17.b99ba729.js"><link rel="prefetch" href="/assets/js/18.7dff4b06.js"><link rel="prefetch" href="/assets/js/19.ff06d982.js"><link rel="prefetch" href="/assets/js/20.7de9995c.js"><link rel="prefetch" href="/assets/js/21.cb9bdcf0.js"><link rel="prefetch" href="/assets/js/22.16dfd536.js"><link rel="prefetch" href="/assets/js/23.eb560dbc.js"><link rel="prefetch" href="/assets/js/24.661e2539.js"><link rel="prefetch" href="/assets/js/25.c7f21645.js"><link rel="prefetch" href="/assets/js/26.64d829b6.js"><link rel="prefetch" href="/assets/js/27.4b3a16c0.js"><link rel="prefetch" href="/assets/js/28.2692df26.js"><link rel="prefetch" href="/assets/js/29.ce82418b.js"><link rel="prefetch" href="/assets/js/3.00356991.js"><link rel="prefetch" href="/assets/js/30.2051ef3b.js"><link rel="prefetch" href="/assets/js/31.34e09941.js"><link rel="prefetch" href="/assets/js/32.e50cc8ec.js"><link rel="prefetch" href="/assets/js/33.9461dbb1.js"><link rel="prefetch" href="/assets/js/34.e4da7325.js"><link rel="prefetch" href="/assets/js/35.a13a0b57.js"><link rel="prefetch" href="/assets/js/36.06d083bd.js"><link rel="prefetch" href="/assets/js/37.f7918bab.js"><link rel="prefetch" href="/assets/js/38.86961f10.js"><link rel="prefetch" href="/assets/js/39.8113a23c.js"><link rel="prefetch" href="/assets/js/4.7fa5c39e.js"><link rel="prefetch" href="/assets/js/40.434f5479.js"><link rel="prefetch" href="/assets/js/41.a4cbee5e.js"><link rel="prefetch" href="/assets/js/42.351f521c.js"><link rel="prefetch" href="/assets/js/43.5f3ad053.js"><link rel="prefetch" href="/assets/js/44.d88da63e.js"><link rel="prefetch" href="/assets/js/45.a9b5d36b.js"><link rel="prefetch" href="/assets/js/46.845f8e9a.js"><link rel="prefetch" href="/assets/js/47.50e3be7d.js"><link rel="prefetch" href="/assets/js/48.cb688c31.js"><link rel="prefetch" href="/assets/js/49.e239b0d8.js"><link rel="prefetch" href="/assets/js/5.8a935be6.js"><link rel="prefetch" href="/assets/js/50.7729a443.js"><link rel="prefetch" href="/assets/js/51.a5bfe490.js"><link rel="prefetch" href="/assets/js/52.94334c08.js"><link rel="prefetch" href="/assets/js/53.6c2661e4.js"><link rel="prefetch" href="/assets/js/54.9b31e7a4.js"><link rel="prefetch" href="/assets/js/55.4fac431c.js"><link rel="prefetch" href="/assets/js/56.a00bf0ab.js"><link rel="prefetch" href="/assets/js/57.92ae460e.js"><link rel="prefetch" href="/assets/js/58.f7f0da5f.js"><link rel="prefetch" href="/assets/js/59.7e810fa1.js"><link rel="prefetch" href="/assets/js/6.c6745fa4.js"><link rel="prefetch" href="/assets/js/60.ea3fa83f.js"><link rel="prefetch" href="/assets/js/61.d78f5084.js"><link rel="prefetch" href="/assets/js/62.bd986f10.js"><link rel="prefetch" href="/assets/js/63.ae3536c2.js"><link rel="prefetch" href="/assets/js/64.492fcc89.js"><link rel="prefetch" href="/assets/js/65.2ebe492f.js"><link rel="prefetch" href="/assets/js/66.b9c8f37b.js"><link rel="prefetch" href="/assets/js/67.1d25c263.js"><link rel="prefetch" href="/assets/js/68.3b9d23fa.js"><link rel="prefetch" href="/assets/js/69.2816cb57.js"><link rel="prefetch" href="/assets/js/7.f127ebf8.js"><link rel="prefetch" href="/assets/js/70.ac77f002.js"><link rel="prefetch" href="/assets/js/71.0be7a2dd.js"><link rel="prefetch" href="/assets/js/72.6b6c0f37.js"><link rel="prefetch" href="/assets/js/73.6fd98879.js"><link rel="prefetch" href="/assets/js/74.07e6199b.js"><link rel="prefetch" href="/assets/js/75.496aef35.js"><link rel="prefetch" href="/assets/js/76.85cd6aca.js"><link rel="prefetch" href="/assets/js/77.1e1f6d01.js"><link rel="prefetch" href="/assets/js/78.386f7748.js"><link rel="prefetch" href="/assets/js/79.c73f26bb.js"><link rel="prefetch" href="/assets/js/80.73e2f1b9.js"><link rel="prefetch" href="/assets/js/81.374b0aea.js"><link rel="prefetch" href="/assets/js/82.8ea9351f.js"><link rel="prefetch" href="/assets/js/83.9367f8bf.js"><link rel="prefetch" href="/assets/js/84.9b0667ae.js"><link rel="prefetch" href="/assets/js/85.441841fb.js"><link rel="prefetch" href="/assets/js/86.b33f285d.js"><link rel="prefetch" href="/assets/js/87.1204c179.js"><link rel="prefetch" href="/assets/js/88.51fe8179.js"><link rel="prefetch" href="/assets/js/89.94101060.js"><link rel="prefetch" href="/assets/js/91.c14bd802.js"><link rel="prefetch" href="/assets/js/92.bac05565.js"><link rel="prefetch" href="/assets/js/93.98011bc4.js"><link rel="prefetch" href="/assets/js/94.614bbf82.js"><link rel="prefetch" href="/assets/js/95.9fc69c4a.js"><link rel="prefetch" href="/assets/js/96.09e8cb5f.js"><link rel="prefetch" href="/assets/js/97.adbe6a5a.js"><link rel="prefetch" href="/assets/js/98.9b0a2ee0.js"><link rel="prefetch" href="/assets/js/99.6806f377.js"><link rel="prefetch" href="/assets/js/vendors~docsearch.162bdabc.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.7ecebcba.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/img/logo.png" alt="刘新冬的博客" class="logo"> <span class="site-name can-hide">刘新冬的博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>JavaSE</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/java/javase/" aria-current="page" class="sidebar-link">简介</a></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span>集合</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/java/javase/collection/default/Collection.html" class="sidebar-link">Collection</a></li><li><a href="/java/javase/collection/default/List.html" class="sidebar-link">List</a></li><li><a href="/java/javase/collection/default/Map.html" class="sidebar-link">Map</a></li><li><a href="/java/javase/collection/default/Queue.html" class="sidebar-link">Queue</a></li><li><a href="/java/javase/collection/default/Set.html" class="sidebar-link">Set</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading open"><span>并发</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/java/javase/concurrent/default/设计线程安全的类.html" class="sidebar-link">设计线程安全的类</a></li><li><a href="/java/javase/concurrent/default/基础构建模块.html" class="sidebar-link">基础构建模块</a></li><li><a href="/java/javase/concurrent/default/任务执行.html" class="sidebar-link">任务执行</a></li><li><a href="/java/javase/concurrent/default/取消与关闭.html" class="sidebar-link">取消与关闭</a></li><li><a href="/java/javase/concurrent/default/线程池的使用.html" class="sidebar-link">线程池的使用</a></li><li><a href="/java/javase/concurrent/default/死锁.html" class="sidebar-link">死锁</a></li><li><a href="/java/javase/concurrent/default/性能与可伸缩性.html" class="sidebar-link">性能与可伸缩性</a></li><li><a href="/java/javase/concurrent/default/显式锁.html" class="sidebar-link">显式锁</a></li><li><a href="/java/javase/concurrent/default/构建自定义的同步工具.html" class="active sidebar-link">构建自定义的同步工具</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/java/javase/concurrent/default/构建自定义的同步工具.html#_1-状态依赖性的管理" class="sidebar-link">1. 状态依赖性的管理</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/java/javase/concurrent/default/构建自定义的同步工具.html#_1-1-将前提条件的失败传递给调用者" class="sidebar-link">1.1 将前提条件的失败传递给调用者</a></li><li class="sidebar-sub-header"><a href="/java/javase/concurrent/default/构建自定义的同步工具.html#_1-2-通过轮询与休眠来实现简单的阻塞" class="sidebar-link">1.2 通过轮询与休眠来实现简单的阻塞</a></li><li class="sidebar-sub-header"><a href="/java/javase/concurrent/default/构建自定义的同步工具.html#_1-3-条件队列" class="sidebar-link">1.3 条件队列</a></li></ul></li><li class="sidebar-sub-header"><a href="/java/javase/concurrent/default/构建自定义的同步工具.html#_2-使用条件队列" class="sidebar-link">2. 使用条件队列</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/java/javase/concurrent/default/构建自定义的同步工具.html#_2-1-条件谓词" class="sidebar-link">2.1 条件谓词</a></li><li class="sidebar-sub-header"><a href="/java/javase/concurrent/default/构建自定义的同步工具.html#_2-2-过早唤醒" class="sidebar-link">2.2 过早唤醒</a></li><li class="sidebar-sub-header"><a href="/java/javase/concurrent/default/构建自定义的同步工具.html#_2-3-丢失的信号" class="sidebar-link">2.3 丢失的信号</a></li><li class="sidebar-sub-header"><a href="/java/javase/concurrent/default/构建自定义的同步工具.html#_2-4-通知" class="sidebar-link">2.4 通知</a></li><li class="sidebar-sub-header"><a href="/java/javase/concurrent/default/构建自定义的同步工具.html#_2-5-阀门类" class="sidebar-link">2.5 阀门类</a></li><li class="sidebar-sub-header"><a href="/java/javase/concurrent/default/构建自定义的同步工具.html#_2-6-子类的安全问题" class="sidebar-link">2.6 子类的安全问题</a></li></ul></li><li class="sidebar-sub-header"><a href="/java/javase/concurrent/default/构建自定义的同步工具.html#_3-显式的condition对象" class="sidebar-link">3. 显式的Condition对象</a></li><li class="sidebar-sub-header"><a href="/java/javase/concurrent/default/构建自定义的同步工具.html#_4-synchronizer剖析" class="sidebar-link">4. Synchronizer剖析</a></li><li class="sidebar-sub-header"><a href="/java/javase/concurrent/default/构建自定义的同步工具.html#_5-abstractqueuedsynchronized" class="sidebar-link">5. AbstractQueuedSynchronized</a></li></ul></li><li><a href="/java/javase/concurrent/default/原子变量与非阻塞同步机制.html" class="sidebar-link">原子变量与非阻塞同步机制</a></li><li><a href="/java/javase/concurrent/default/Executor框架.html" class="sidebar-link">Executor框架</a></li><li><a href="/java/javase/concurrent/default/Future框架.html" class="sidebar-link">Future框架</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span>其他</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/java/javase/other/default/static关键字.html" class="sidebar-link">static关键字</a></li><li><a href="/java/javase/other/default/泛型机制.html" class="sidebar-link">泛型机制</a></li><li><a href="/java/javase/other/default/解决hash冲突的常用方法.html" class="sidebar-link">解决hash冲突的常用方法</a></li><li><a href="/java/javase/other/default/三元运算符与类型转换.html" class="sidebar-link">三元运算符与类型转换</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span>IO</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/java/javase/io/default/NIO概述.html" class="sidebar-link">NIO概述</a></li></ul></section></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><p>创建状态依赖类的最简单方法通常是在类库中现有状态依赖类的基础上进行构造。</p> <h2 id="_1-状态依赖性的管理"><a href="#_1-状态依赖性的管理" class="header-anchor">#</a> 1. 状态依赖性的管理</h2> <p>依赖状态的操作可以一直阻塞直到可以继续执行，这比使它们先失败再实现起来要更为方便且更不容易出错。</p> <p>接下来介绍有界缓存的几种实现，其中将采用不同的方法来处理前提条件失败的问题，在每种实现中都扩展了程序清单14-2的<code>BaseBoundedBuffer</code>，在这个类中实现了一个基于数组的循环缓存，其中各个缓存状态变量均由缓存的内置锁来保护。</p> <div class="language- extra-class"><pre class="language-text"><code>****** 程序清单14-2 有界缓存实现的基类 ******
+
+public abstract class BaseBoundedBuffer&lt;V&gt;{
+    private final V[] buf;
+    private int tail;
+    private int head;
+    private int count;
+
+    protected BaseBoundedBuffer(int capacity){
+        this.buf = (V[]) new Object[capacity];
+    }
+
+    protected synchronized final void doPut(V v){
+        buf[tail] = v;
+        if(++tail == buf.length){
+            tail = 0;
+        }
+        ++count;
+    }
+
+    protected synchronized final V doTake(){
+        V v = buf[head];
+        buf[head] = null;
+        if(++head == buf.length){
+            head = 0;
+        }
+        --count;
+        return v;
+    }
+    
+    protected synchronized final boolean isFull(){
+        return count == buf.length;
+    }
+    
+    protected synchronized final boolean isEmpty(){
+        return count == 0;
+    }
+}
+</code></pre></div><h3 id="_1-1-将前提条件的失败传递给调用者"><a href="#_1-1-将前提条件的失败传递给调用者" class="header-anchor">#</a> 1.1 将前提条件的失败传递给调用者</h3> <div class="language- extra-class"><pre class="language-text"><code>****** 程序清单14-3 当不满足前提条件时,有界缓存不会执行相应的操作 ******
+
+public class GrumpyBoundedBuffer&lt;V&gt; extends BaseBoundedBuffer&lt;V&gt;{
+
+    protected GrumpyBoundedBuffer(int capacity) {
+        super(capacity);
+    }
+    
+    public synchronized void put(V v) throws BufferFullException{
+        if(isFull())
+            throw new BufferFullException();
+        doPut(v);
+    }
+    
+    public synchronized V take() throws BufferEmptyException{
+        if(isEmpty())
+            throw new BufferEmptyException();
+        return doTake();
+    }
+}
+</code></pre></div><p>缺点：调用者必须自行处理前提条件失败的情况。</p> <h3 id="_1-2-通过轮询与休眠来实现简单的阻塞"><a href="#_1-2-通过轮询与休眠来实现简单的阻塞" class="header-anchor">#</a> 1.2 通过轮询与休眠来实现简单的阻塞</h3> <div class="language- extra-class"><pre class="language-text"><code>****** 程序清单14-5 使用简单的阻塞实现的有界缓存 ******
+
+public class SleepyBoundedBuffer&lt;V&gt; extends BaseBoundedBuffer&lt;V&gt;{
+
+    protected SleepyBoundedBuffer(int capacity) {
+        super(capacity);
+    }
+    
+    public void put(V v) throws InterruptedException{
+        while (true){
+            synchronized (this){
+                if(!isFull()){
+                    doPut(v);
+                    return;
+                }
+            }
+            Thread.sleep(sometime);
+        }
+    }
+    
+    public V take() throws InterruptedException{
+        while (true){
+            synchronized (this){
+                if(!isEmpty())
+                    return doTake();
+            }
+            Thread.sleep(sometime);
+        }
+    }
+}
+</code></pre></div><p>在程序清单14-5中，如果前提条件失败,那么当前线程将释放锁并休眠一段时间，从而使其他线程能够访问缓存。当线程醒来后，重新请求锁并尝试执行操作，如此往复便初步实现了阻塞操作。</p> <p>上述缓存实现的不足之处：当线程判断前提条件失败后，会休眠固定的时间，而无法立即被唤醒来实现即时响应。</p> <h3 id="_1-3-条件队列"><a href="#_1-3-条件队列" class="header-anchor">#</a> 1.3 条件队列</h3> <p>“条件队列”这个名字来源于：它使得一组线程能够通过某种方式来等待特定的条件变成真。传统队列的元素是一个个数据，而条件队列中的元素是一个个正在等待相关条件的线程。</p> <p>条件队列与”休眠”机制相比，本质的语义是相同的，只是在多个方面进行了优化：CPU效率、上下文切换开销和响应性等。如果某个功能无法通过”轮询和休眠”来实现，那么使用条件队列也无法实现。</p> <div class="language- extra-class"><pre class="language-text"><code>****** 程序清单14-6 使用条件队列实现的有界缓存 ******
+
+public class BoundedBuffer&lt;V&gt; extends BaseBoundedBuffer&lt;V&gt;{
+
+    protected BoundedBuffer(int capacity) {
+        super(capacity);
+    }
+    
+    public synchronized void put(V v) throws InterruptedException{
+        while (isFull())
+            wait();
+        doPut(v);
+        notifyAll();
+    }
+    
+    public synchronized V take() throws InterruptedException{
+        while (isEmpty())
+            wait();
+        V v = doTake();
+        notifyAll();
+        return v;
+    }
+}
+</code></pre></div><h2 id="_2-使用条件队列"><a href="#_2-使用条件队列" class="header-anchor">#</a> 2. 使用条件队列</h2> <h3 id="_2-1-条件谓词"><a href="#_2-1-条件谓词" class="header-anchor">#</a> 2.1 条件谓词</h3> <p>在条件等待中存在一种重要的三元关系：加锁、wait方法和一个条件谓词。</p> <p>在条件谓词中包含多个状态变量，而状态变量由一个锁来保护，因此在测试条件谓词之前必须先持有这个锁。锁对象与条件队列对象（即调用wait和notifyAll等方法所在的对象）必须是同一个对象。</p> <h3 id="_2-2-过早唤醒"><a href="#_2-2-过早唤醒" class="header-anchor">#</a> 2.2 过早唤醒</h3> <p>当使用条件等待时，通常都有一个条件谓词，包括一些对象状态的测试，线程在执行前必须首先通过这些测试。</p> <p>在调用wait之前测试条件谓词，并且从wait中返回时再次进行测试。</p> <p>在一个循环中调用wait。</p> <p>确保使用与条件队列相关的锁来保护构成条件谓词的各个状态变量。</p> <p>当调用<code>wait/notify/notifyAll</code>方法时，一定要持有与条件队列相关的锁。</p> <p>在检查条件谓词之后以及开始执行相应的操作之前，不要释放锁。</p> <h3 id="_2-3-丢失的信号"><a href="#_2-3-丢失的信号" class="header-anchor">#</a> 2.3 丢失的信号</h3> <p>丢失的信号是指线程必须等待一个已经为真的条件，但是在开始等待之前没有检查条件谓词。</p> <p>如果线程a通知了一个条件队列，而线程b随后在这个条件队列上等待，那么线程b不会立即醒来，而是需要另一个通知来唤醒它。</p> <h3 id="_2-4-通知"><a href="#_2-4-通知" class="header-anchor">#</a> 2.4 通知</h3> <p>每当在等待一个条件时，一定要确保在条件谓词变为真时通过某种方式发出通知。发出通知的线程应该尽快地释放锁，从而确保正在等待的线程尽可能快地解除阻塞.</p> <p><code>notify</code>与<code>notifyAll</code>相比，单一的<code>notify</code>通知很容易导致类似于信号丢失的问题。</p> <p>只有在同时满足以下两个条件时，才能使用单一的<code>notify</code>而不是<code>notifyAll</code>：</p> <ol><li>所有等待线程的类型都相同，只有一个条件谓词与条件队列相关，并且每个线程在从<code>wait</code>返回后都将执行相同的操作。</li> <li>单进单出。在条件变量上的每次通知，最多只能唤醒一个线程来执行。</li></ol> <h3 id="_2-5-阀门类"><a href="#_2-5-阀门类" class="header-anchor">#</a> 2.5 阀门类</h3> <p>闭锁机制存在的一个缺陷：阀门在打开后无法重新关闭。</p> <div class="language- extra-class"><pre class="language-text"><code>****** 程序清单14-9 使用wait和notifyAll来实现可重新关闭的阀门 ******
+
+public class ThreadGate{
+    private boolean isOpen;
+    private int generation;
+    
+    public synchronized void close(){
+        isOpen = false;
+    }
+    
+    public synchronized void open(){
+        ++generation;
+        isOpen = true;
+        notifyAll();
+    }
+    
+    public synchronized void await() throws InterruptedException{
+        int arrivalGeneration = generation;
+        while (!isOpen &amp;&amp; arrivalGeneration==generation)
+            wait();
+    }
+}
+</code></pre></div><h3 id="_2-6-子类的安全问题"><a href="#_2-6-子类的安全问题" class="header-anchor">#</a> 2.6 子类的安全问题</h3> <p>对于状态依赖的类，要么将其等待和通知等协议完全向子类公开，要么完全阻止子类参与到等待和通知等过程中。</p> <h2 id="_3-显式的condition对象"><a href="#_3-显式的condition对象" class="header-anchor">#</a> 3. 显式的Condition对象</h2> <p>Condition比内置条件队列提供了更丰富的功能：在每个锁上可存在多个等待/条件等待可以是可中断的，基于时限的等待，以及公平的或非公平的队列操作。</p> <p>在Condition中，与<code>wait、notify、notifyAll</code>方法对应的分别是<code>await、signal、signalAll</code>。</p> <div class="language- extra-class"><pre class="language-text"><code>****** 程序清单14-11 使用显式条件变量的有界缓存 ******
+
+public abstract class ConditionBoundedBuffer&lt;V&gt;{
+    private final V[] buf;
+    private int tail,head,count;
+    protected final Lock lock = new ReentrantLock();
+    protected final Condition notFull = lock.newCondition();
+    protected final Condition notEmpty = lock.newCondition();
+    
+    
+    protected ConditionBoundedBuffer(int capacity){
+        this.buf = (V[]) new Object[capacity];
+    }
+
+    protected void put(V v) throws InterruptedException {
+        lock.lock();
+        try{
+            while (count == buf.length)
+                notFull.await();
+            buf[tail] = v;
+            if(++tail == buf.length){
+                tail = 0;
+            }
+            ++count;
+            notEmpty.signalAll();
+        }finally {
+            lock.unlock();
+        }
+        
+    }
+
+    protected V take() throws InterruptedException {
+        lock.lock();
+        try{
+            while (count == 0)
+                notEmpty.await();
+            V v = buf[head];
+            buf[head] = null;
+            if(++head == buf.length){
+                head = 0;
+            }
+            --count;
+            notFull.signalAll();
+            return v;
+        }finally {
+            lock.unlock();
+        }
+    }
+
+}
+</code></pre></div><h2 id="_4-synchronizer剖析"><a href="#_4-synchronizer剖析" class="header-anchor">#</a> 4. Synchronizer剖析</h2> <p>在<code>ReentrantLock</code>和<code>Semaphore</code>这两个接口之间存在许多共同点，都可以作为一个”阀门”，即每次只允许一定数量的线程通过，并且都支持可中断的/不可中断的以及限时的获取操作，并且也都支持等待线程执行公平或者非公平的队列操作。</p> <div class="language- extra-class"><pre class="language-text"><code>****** 程序清单14-12 使用Lock来实现信号量 ******
+
+public class SemphoreOnLock{
+    private final Lock lock = new ReentrantLock();
+    private final Condition permissionAvailable = lock.newCondition();
+    private int permits;
+    
+    SemphoreOnLock(int initialPermits){
+        lock.lock();
+        try {
+            permits = initialPermits
+        } finally {
+            lock.unlock();
+        }
+    }
+    
+    public void acquire() throws InterruptedException {
+        lock.lock();
+        try{
+            while (permits&lt;=0)
+                permissionAvailable.await();
+            --permits;
+        } finally {
+            lock.unlock();
+        }
+    }
+    
+    public void release(){
+        lock.lock();
+        try{
+            ++permits;
+            permissionAvailable.signalAll();
+        } finally {
+            lock.unlock();
+        }
+    }
+}
+</code></pre></div><h2 id="_5-abstractqueuedsynchronized"><a href="#_5-abstractqueuedsynchronized" class="header-anchor">#</a> 5. AbstractQueuedSynchronized</h2> <p>AQS是一个用于构建锁和同步器的框架，许多同步工具都是基于AQS构建的，如: <code>ReentrantLock</code>、<code>Semphore</code>、<code>CountDownLatch</code>、<code>ReentrantWriteLock</code>、<code>Synchronous</code>和<code>FutureTask</code>。</p> <p>在基于AQS构建的同步容器类中，最基本的操作包括各种形式的获取操作和释放操作。</p> <div class="language- extra-class"><pre class="language-text"><code>****** 程序清单14-14 使用AQS实现的二元闭锁 ******
+
+public class OneShotLatch{
+    private final Sync sync = new Sync();
+    
+    public void signal(){
+        sync.releaseShared(0);
+    }
+    
+    public void await() throws InterruptedException {
+        sync.acquireSharedInterruptibly(0);
+    }
+    
+    private class Sync extends AbstractQueuedSynchronizer{
+        @Override
+        protected int tryAcquireShared(int arg) {
+            return (getState()==1)?1:-1;
+        }
+
+        @Override
+        protected boolean tryReleaseShared(int arg) {
+            setState(1);
+            return true;
+        }
+    }
+}
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/java/javase/concurrent/default/显式锁.html" class="prev">
+        显式锁
+      </a></span> <span class="next"><a href="/java/javase/concurrent/default/原子变量与非阻塞同步机制.html">
+        原子变量与非阻塞同步机制
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.a38c516a.js" defer></script><script src="/assets/js/2.ba6b1436.js" defer></script><script src="/assets/js/1.2d4ce02f.js" defer></script><script src="/assets/js/90.e4ce6df4.js" defer></script>
+  </body>
+</html>
