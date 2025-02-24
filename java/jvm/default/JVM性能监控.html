@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>JVM性能监控 | 刘新冬的博客</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <link rel="icon" href="/blog/img/logo.png">
+    <meta name="description" content="JVM性能监控">
+    
+    <link rel="preload" href="/blog/assets/css/0.styles.495eacbe.css" as="style"><link rel="preload" href="/blog/assets/js/app.be7b3c5d.js" as="script"><link rel="preload" href="/blog/assets/js/2.ba6b1436.js" as="script"><link rel="preload" href="/blog/assets/js/1.2d4ce02f.js" as="script"><link rel="preload" href="/blog/assets/js/103.42ccafa6.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.14082ad8.js"><link rel="prefetch" href="/blog/assets/js/100.8d7417e3.js"><link rel="prefetch" href="/blog/assets/js/101.fdcf6f2e.js"><link rel="prefetch" href="/blog/assets/js/102.c17f4912.js"><link rel="prefetch" href="/blog/assets/js/104.3190fe99.js"><link rel="prefetch" href="/blog/assets/js/105.5c7cca57.js"><link rel="prefetch" href="/blog/assets/js/106.3ff91c4f.js"><link rel="prefetch" href="/blog/assets/js/107.909c3ac0.js"><link rel="prefetch" href="/blog/assets/js/108.478121f5.js"><link rel="prefetch" href="/blog/assets/js/109.38d91750.js"><link rel="prefetch" href="/blog/assets/js/11.d36ef131.js"><link rel="prefetch" href="/blog/assets/js/110.182a6fc4.js"><link rel="prefetch" href="/blog/assets/js/111.947ac851.js"><link rel="prefetch" href="/blog/assets/js/112.08456d8c.js"><link rel="prefetch" href="/blog/assets/js/113.585e06ab.js"><link rel="prefetch" href="/blog/assets/js/114.86dcb468.js"><link rel="prefetch" href="/blog/assets/js/115.fe3b690b.js"><link rel="prefetch" href="/blog/assets/js/116.4b23a9ec.js"><link rel="prefetch" href="/blog/assets/js/117.4195b3fc.js"><link rel="prefetch" href="/blog/assets/js/118.59e318a9.js"><link rel="prefetch" href="/blog/assets/js/119.ce29e687.js"><link rel="prefetch" href="/blog/assets/js/12.c5493e01.js"><link rel="prefetch" href="/blog/assets/js/120.cb9d3dbb.js"><link rel="prefetch" href="/blog/assets/js/121.a9e26ad8.js"><link rel="prefetch" href="/blog/assets/js/122.2af9cf66.js"><link rel="prefetch" href="/blog/assets/js/13.430eca0c.js"><link rel="prefetch" href="/blog/assets/js/14.c88f86cd.js"><link rel="prefetch" href="/blog/assets/js/15.e1cc950a.js"><link rel="prefetch" href="/blog/assets/js/16.b699b95c.js"><link rel="prefetch" href="/blog/assets/js/17.b99ba729.js"><link rel="prefetch" href="/blog/assets/js/18.7dff4b06.js"><link rel="prefetch" href="/blog/assets/js/19.ff06d982.js"><link rel="prefetch" href="/blog/assets/js/20.7de9995c.js"><link rel="prefetch" href="/blog/assets/js/21.cb9bdcf0.js"><link rel="prefetch" href="/blog/assets/js/22.16dfd536.js"><link rel="prefetch" href="/blog/assets/js/23.eb560dbc.js"><link rel="prefetch" href="/blog/assets/js/24.661e2539.js"><link rel="prefetch" href="/blog/assets/js/25.c5e933a4.js"><link rel="prefetch" href="/blog/assets/js/26.90b0991d.js"><link rel="prefetch" href="/blog/assets/js/27.e74d660a.js"><link rel="prefetch" href="/blog/assets/js/28.f119234c.js"><link rel="prefetch" href="/blog/assets/js/29.4ebed3b0.js"><link rel="prefetch" href="/blog/assets/js/3.00356991.js"><link rel="prefetch" href="/blog/assets/js/30.64faf300.js"><link rel="prefetch" href="/blog/assets/js/31.34e09941.js"><link rel="prefetch" href="/blog/assets/js/32.e50cc8ec.js"><link rel="prefetch" href="/blog/assets/js/33.28ff3136.js"><link rel="prefetch" href="/blog/assets/js/34.de45e097.js"><link rel="prefetch" href="/blog/assets/js/35.b36afa6f.js"><link rel="prefetch" href="/blog/assets/js/36.f7df77c6.js"><link rel="prefetch" href="/blog/assets/js/37.fcbade32.js"><link rel="prefetch" href="/blog/assets/js/38.692efdb6.js"><link rel="prefetch" href="/blog/assets/js/39.f234d5d1.js"><link rel="prefetch" href="/blog/assets/js/4.7fa5c39e.js"><link rel="prefetch" href="/blog/assets/js/40.77711165.js"><link rel="prefetch" href="/blog/assets/js/41.d7a0d236.js"><link rel="prefetch" href="/blog/assets/js/42.feaf6bdd.js"><link rel="prefetch" href="/blog/assets/js/43.c52f3962.js"><link rel="prefetch" href="/blog/assets/js/44.6dab230d.js"><link rel="prefetch" href="/blog/assets/js/45.b6fd5fa7.js"><link rel="prefetch" href="/blog/assets/js/46.4d50f591.js"><link rel="prefetch" href="/blog/assets/js/47.a769691a.js"><link rel="prefetch" href="/blog/assets/js/48.a679af36.js"><link rel="prefetch" href="/blog/assets/js/49.1c846391.js"><link rel="prefetch" href="/blog/assets/js/5.8a935be6.js"><link rel="prefetch" href="/blog/assets/js/50.584c1d09.js"><link rel="prefetch" href="/blog/assets/js/51.9a3f5dad.js"><link rel="prefetch" href="/blog/assets/js/52.b6ae0713.js"><link rel="prefetch" href="/blog/assets/js/53.046b88a2.js"><link rel="prefetch" href="/blog/assets/js/54.b5596254.js"><link rel="prefetch" href="/blog/assets/js/55.f9077d07.js"><link rel="prefetch" href="/blog/assets/js/56.3a45e95c.js"><link rel="prefetch" href="/blog/assets/js/57.ec4b3e0f.js"><link rel="prefetch" href="/blog/assets/js/58.7c5cea44.js"><link rel="prefetch" href="/blog/assets/js/59.432821c3.js"><link rel="prefetch" href="/blog/assets/js/6.c6745fa4.js"><link rel="prefetch" href="/blog/assets/js/60.9e00e022.js"><link rel="prefetch" href="/blog/assets/js/61.af320179.js"><link rel="prefetch" href="/blog/assets/js/62.ef4c93f5.js"><link rel="prefetch" href="/blog/assets/js/63.242b7861.js"><link rel="prefetch" href="/blog/assets/js/64.bd2ba91b.js"><link rel="prefetch" href="/blog/assets/js/65.c5c5f29e.js"><link rel="prefetch" href="/blog/assets/js/66.29884931.js"><link rel="prefetch" href="/blog/assets/js/67.f0a6b713.js"><link rel="prefetch" href="/blog/assets/js/68.6b40d6ba.js"><link rel="prefetch" href="/blog/assets/js/69.c6a9d2c9.js"><link rel="prefetch" href="/blog/assets/js/7.f127ebf8.js"><link rel="prefetch" href="/blog/assets/js/70.00b93126.js"><link rel="prefetch" href="/blog/assets/js/71.133e5d42.js"><link rel="prefetch" href="/blog/assets/js/72.cf6be888.js"><link rel="prefetch" href="/blog/assets/js/73.54db959f.js"><link rel="prefetch" href="/blog/assets/js/74.e4a072d4.js"><link rel="prefetch" href="/blog/assets/js/75.c48d7781.js"><link rel="prefetch" href="/blog/assets/js/76.d6244710.js"><link rel="prefetch" href="/blog/assets/js/77.6f4860be.js"><link rel="prefetch" href="/blog/assets/js/78.e9ebefa1.js"><link rel="prefetch" href="/blog/assets/js/79.72d36919.js"><link rel="prefetch" href="/blog/assets/js/80.aed400b3.js"><link rel="prefetch" href="/blog/assets/js/81.d1b37fde.js"><link rel="prefetch" href="/blog/assets/js/82.c931d220.js"><link rel="prefetch" href="/blog/assets/js/83.e76ab0fc.js"><link rel="prefetch" href="/blog/assets/js/84.2c72ae76.js"><link rel="prefetch" href="/blog/assets/js/85.cfb6864a.js"><link rel="prefetch" href="/blog/assets/js/86.5487c200.js"><link rel="prefetch" href="/blog/assets/js/87.27164930.js"><link rel="prefetch" href="/blog/assets/js/88.1f0b6531.js"><link rel="prefetch" href="/blog/assets/js/89.c4633f89.js"><link rel="prefetch" href="/blog/assets/js/90.1de831ee.js"><link rel="prefetch" href="/blog/assets/js/91.f53450dd.js"><link rel="prefetch" href="/blog/assets/js/92.029b0052.js"><link rel="prefetch" href="/blog/assets/js/93.f3837e55.js"><link rel="prefetch" href="/blog/assets/js/94.87427a06.js"><link rel="prefetch" href="/blog/assets/js/95.2a709d19.js"><link rel="prefetch" href="/blog/assets/js/96.723feb99.js"><link rel="prefetch" href="/blog/assets/js/97.30f909a1.js"><link rel="prefetch" href="/blog/assets/js/98.a063be16.js"><link rel="prefetch" href="/blog/assets/js/99.6a29e68b.js"><link rel="prefetch" href="/blog/assets/js/vendors~docsearch.162bdabc.js">
+    <link rel="stylesheet" href="/blog/assets/css/0.styles.495eacbe.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog/" class="home-link router-link-active"><img src="/blog/img/logo.png" alt="刘新冬的博客" class="logo"> <span class="site-name can-hide">刘新冬的博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/blog/" class="nav-link">
+  首页
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/blog/" class="nav-link">
+  首页
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Jvm</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/java/jvm/" aria-current="page" class="sidebar-link">简介</a></li><li><a href="/blog/java/jvm/default/HotSpotVM架构.html" class="sidebar-link">HotSpotVM 架构</a></li><li><a href="/blog/java/jvm/default/JVM性能监控.html" class="active sidebar-link">JVM性能监控</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/blog/java/jvm/default/JVM性能监控.html#_1-理解gc日志" class="sidebar-link">1. 理解GC日志</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/blog/java/jvm/default/JVM性能监控.html#_1-1-重要的垃圾收集数据" class="sidebar-link">1.1 重要的垃圾收集数据</a></li><li class="sidebar-sub-header"><a href="/blog/java/jvm/default/JVM性能监控.html#_1-2-开启gc日志输出" class="sidebar-link">1.2 开启GC日志输出</a></li><li class="sidebar-sub-header"><a href="/blog/java/jvm/default/JVM性能监控.html#_1-3-minorgc日志" class="sidebar-link">1.3 MinorGC日志</a></li><li class="sidebar-sub-header"><a href="/blog/java/jvm/default/JVM性能监控.html#_1-4-fullgc日志" class="sidebar-link">1.4 FullGC日志</a></li><li class="sidebar-sub-header"><a href="/blog/java/jvm/default/JVM性能监控.html#_1-5-cms老年代gc日志" class="sidebar-link">1.5 CMS老年代GC日志</a></li><li class="sidebar-sub-header"><a href="/blog/java/jvm/default/JVM性能监控.html#_1-6-补充" class="sidebar-link">1.6 补充</a></li></ul></li><li class="sidebar-sub-header"><a href="/blog/java/jvm/default/JVM性能监控.html#_2-jconsole" class="sidebar-link">2. JConsole</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/blog/java/jvm/default/JVM性能监控.html#_2-1-启动" class="sidebar-link">2.1 启动</a></li><li class="sidebar-sub-header"><a href="/blog/java/jvm/default/JVM性能监控.html#_2-2-连接jvm应用" class="sidebar-link">2.2 连接jvm应用</a></li><li class="sidebar-sub-header"><a href="/blog/java/jvm/default/JVM性能监控.html#_2-3-连接成功" class="sidebar-link">2.3 连接成功</a></li><li class="sidebar-sub-header"><a href="/blog/java/jvm/default/JVM性能监控.html#_2-4-内存监控" class="sidebar-link">2.4 内存监控</a></li><li class="sidebar-sub-header"><a href="/blog/java/jvm/default/JVM性能监控.html#_2-5-线程监控" class="sidebar-link">2.5 线程监控</a></li><li class="sidebar-sub-header"><a href="/blog/java/jvm/default/JVM性能监控.html#_2-6-类加载监控" class="sidebar-link">2.6 类加载监控</a></li><li class="sidebar-sub-header"><a href="/blog/java/jvm/default/JVM性能监控.html#_2-7-vm概要" class="sidebar-link">2.7 VM概要</a></li><li class="sidebar-sub-header"><a href="/blog/java/jvm/default/JVM性能监控.html#_2-8-mbean监控" class="sidebar-link">2.8 MBean监控</a></li></ul></li><li class="sidebar-sub-header"><a href="/blog/java/jvm/default/JVM性能监控.html#_3-visualvm" class="sidebar-link">3. VisualVM</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/blog/java/jvm/default/JVM性能监控.html#_3-1-启动" class="sidebar-link">3.1 启动</a></li><li class="sidebar-sub-header"><a href="/blog/java/jvm/default/JVM性能监控.html#_3-2-概述" class="sidebar-link">3.2 概述</a></li><li class="sidebar-sub-header"><a href="/blog/java/jvm/default/JVM性能监控.html#_3-3-监控" class="sidebar-link">3.3 监控</a></li><li class="sidebar-sub-header"><a href="/blog/java/jvm/default/JVM性能监控.html#_3-4-线程详情监测" class="sidebar-link">3.4 线程详情监测</a></li><li class="sidebar-sub-header"><a href="/blog/java/jvm/default/JVM性能监控.html#_3-5-抽样器" class="sidebar-link">3.5 抽样器</a></li><li class="sidebar-sub-header"><a href="/blog/java/jvm/default/JVM性能监控.html#_3-6-性能分析" class="sidebar-link">3.6 性能分析</a></li></ul></li><li class="sidebar-sub-header"><a href="/blog/java/jvm/default/JVM性能监控.html#_4-jatack" class="sidebar-link">4. jatack</a></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="_1-理解gc日志"><a href="#_1-理解gc日志" class="header-anchor">#</a> 1. 理解GC日志</h2> <p>HotSpot VM可以将每次GC的数据直接输出成日志，可以以文本方式查看GC统计数据，或者用GUI监控工具查看。</p> <h3 id="_1-1-重要的垃圾收集数据"><a href="#_1-1-重要的垃圾收集数据" class="header-anchor">#</a> 1.1 重要的垃圾收集数据</h3> <ol><li>当前使用的垃圾收集器。</li> <li>Java堆的大小。</li> <li>新生代和老年代的大小。</li> <li>永久代的大小。</li> <li>MinorGC的持续时间。</li> <li>MinorGC的频率。</li> <li>MinorGC的空间回收量。</li> <li>FullGC的持续时间。</li> <li>FullGC的频率。</li> <li>每个并发垃圾收集周期内的空间回收量。</li> <li>垃圾收集前后java堆的占用量。</li> <li>垃圾收集前后新生代和老年代的占用量。</li> <li>垃圾收集前后永久代的占用量。</li> <li>是否老年代或者永久代的占用触发了FullGC。</li> <li>应用是否显式调用了System.gc()。</li></ol> <h3 id="_1-2-开启gc日志输出"><a href="#_1-2-开启gc日志输出" class="header-anchor">#</a> 1.2 开启GC日志输出</h3> <ul><li>开启 <code>–XX:+PrintGCDetails</code> 可以打印出GC日志，默认是打印在console控制台。</li> <li>使用 <code>–Xloggc:filename</code> 可以将GC日志直接输出到文件，filename为目标文件名称。</li> <li>使用 <code>–XX:+PrintGCTimeStamps</code> 可以在GC日志中输出自jvm启动依赖到垃圾收集之间流逝的秒数，可以通过这个时间戳来统计GC频率。</li> <li>使用 <code>–XX:+PrintGCDateStamps</code> 可以在GC日志中输出标准格式的年月日时分秒形式的时间戳，也可以根据此时间戳来统计GC频率。</li></ul> <h3 id="_1-3-minorgc日志"><a href="#_1-3-minorgc日志" class="header-anchor">#</a> 1.3 MinorGC日志</h3> <p>为了便于注释说明，将日志作了分行处理 。</p> <p><strong>原始日志</strong></p> <div class="language- extra-class"><pre class="language-text"><code>1:	76.282: 
+2: 	[GC (Allocation Failure) 
+3:		[PSYoungGen: 554568K-&gt;35404K(573440K)] 
+4:		610676K-&gt;93743K(641024K), 0.0260886 secs] 
+5:		[Times: user=0.06 sys=0.01, real=0.03 secs]
+</code></pre></div><p><strong>日志说明</strong></p> <ul><li><p>第1行</p> <p>开启了–XX:+PrintGCTimeStamps后的时间戳。</p></li> <li><p>第2行</p> <p><code>GC</code>表示是MinorGC。</p></li> <li><p>第3行</p> <p><code>PSYoungGen</code>表示新生代使用的是Parallel Scavenge收集器。(如果是<code>ParNew</code>，表示使用的是Parallel收集器； 如果是<code>DefNew</code>，表示使用的是Serial收集器)
+“-&gt;”左侧<code>554568K</code>是垃圾收集前新生代的占用量，右侧<code>35404K</code>是垃圾收集后新生代的占用量，因为MinorGC后Eden为空，所以<code>35404K</code>也代表GC后被占用的那一块Survivor的占用量。
+括号中的<code>573440K</code>是Eden和一块被占用的Survivor的和。</p></li> <li><p>第4行</p> <p>“-&gt;”左侧<code>610676K</code>是垃圾收集前java堆的占用量，右侧<code>93743K</code>是垃圾收集后java堆的占用量。
+括号中的<code>641024K</code>是java堆的总量。
+<code>0.0260886 secs</code>是执行垃圾回收花费的时间。</p></li> <li><p>第5行</p> <p><code>user</code>是垃圾收集执行非操作系统调用指令所耗费的cpu时间。
+<code>sys</code>是垃圾收集执行操作系统调用指令所耗费的cpu时间。
+<code>real</code>是垃圾收集的实际时间。</p></li></ul> <h3 id="_1-4-fullgc日志"><a href="#_1-4-fullgc日志" class="header-anchor">#</a> 1.4 FullGC日志</h3> <p>为了便于注释说明，将日志作了分行处理。</p> <p><strong>原始日志:</strong></p> <div class="language- extra-class"><pre class="language-text"><code>1:	2784.826: 
+2:		[Full GC (System.gc()) 
+3:			[PSYoungGen: 672K-&gt;0K(558080K)] 
+4:			[ParOldGen: 44257K-&gt;38446K(90112K)] 
+5:			44929K-&gt;38446K(648192K), 
+6:			[Metaspace: 61626K-&gt;61360K(1103872K)], 0.2257245 secs] 
+7:			[Times: user=0.84 sys=0.00, real=0.23 secs]
+</code></pre></div><p><strong>日志说明</strong></p> <ul><li><p>第1行</p> <p>开启了–XX:+PrintGCTimeStamps后的时间戳。</p></li> <li><p>第2行</p> <p><code>Full GC</code>,直接标明了GC类型<code>(System.gc())</code> 表示是通过程序中显式调用System.gc()触发的FullGC，如果是由jvm自动触发，则没有此参数。</p></li> <li><p>第3行</p> <p>和上面MinorGC中的含义相同，不再赘述。</p></li> <li><p>第4行</p> <p><code>ParOldGen</code>说明老年代使用了Parallel Old收集器。
+“-&gt;”左侧<code>44257K</code>是垃圾回收前老年代的使用量，右侧38446K是垃圾收集后老年代的使用量。
+括号中的<code>90112K</code>是老年代的大小。</p></li> <li><p>第5行</p> <p><code>44929K-&gt;38446K(648192K)</code>是java堆的使用情况，同MinorGC中含义相同，不在赘述。</p></li> <li><p>第6行</p></li> <li><p><code>Metaspace</code>表示元数据区，此日志是java8的jvm生成，因为java8中HotSpot删除了永久代，取而代之的是元数据区。
+“-&gt;”左侧的<code>61626K</code>是垃圾收集前元数据区的使用量，右侧的<code>61360K</code>是垃圾收集后元数据区的使用量。
+括号中的<code>1103872K</code>是元数据区大小。
+<code>0.2257245 secs</code>是此次FullGC花费的时间。</p></li> <li><p>第7行</p> <p>含义和MinorGC中相同，不再赘述。</p></li></ul> <p>FullGC中值得关注的是垃圾收集之前老年代和元数据区的占用量，因为当两者的占用接近其容量时，都会触发FullFC。</p> <h3 id="_1-5-cms老年代gc日志"><a href="#_1-5-cms老年代gc日志" class="header-anchor">#</a> 1.5 CMS老年代GC日志</h3> <p>当 <code>–XX:+UseConcMarkSweepGC</code> 使用CMS收集器时，会自动开启 <code>–XX:+UserParNewGC</code>。CMS在老年代的GC日志与上面的FullGC日志有很大的不同.</p> <p><strong>原始日志:</strong></p> <div class="language- extra-class"><pre class="language-text"><code>1:	7.879: [GC (CMS Initial Mark) [1 CMS-initial-mark: 37262K(87424K)] 42307K(126720K), 0.0009025 secs] 
+                [Times: user=0.00 sys=0.00, real=0.00 secs] 
+2:	7.880: [CMS-concurrent-mark-start]
+3:	7.905: [CMS-concurrent-mark: 0.023/0.025 secs] [Times: user=0.06 sys=0.00, real=0.02 secs] 
+4:	7.905: [CMS-concurrent-preclean-start]
+5:	7.905: [CMS-concurrent-preclean: 0.001/0.001 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] 
+6:	7.905: [CMS-concurrent-abortable-preclean-start]
+7:	7.986: [GC (Allocation Failure) 7.986: [ParNew: 38926K-&gt;4352K(39296K), 0.0067288 secs] 76189K-&gt;43991K(126720K), 0.0067888 secs] 
+                [Times: user=0.00 sys=0.00, real=0.01 secs] 
+8:	8.102: [GC (Allocation Failure) 8.102: [ParNew8.120: [CMS-concurrent-abortable-preclean: 0.034/0.214 secs] 
+                [Times: user=0.33 sys=0.02, real=0.22 secs] 
+	: 39296K-&gt;876K(39296K), 0.0335647 secs] 78935K-&gt;40751K(126720K), 0.0336238 secs] [Times: user=0.13 sys=0.00, real=0.03 secs] 
+9:	8.136: [GC (CMS Final Remark) [YG occupancy: 1569 K (39296 K)]8.136: [Rescan (parallel) , 0.0026637 secs]
+        8.139: [weak refs processing, 0.0004099 secs]
+        8.139: [class unloading, 0.0049642 secs]
+        8.144: [scrub symbol table, 0.0053784 secs]
+        8.149: [scrub string table, 0.0006631 secs][1 CMS-remark: 39874K(87424K)] 41443K(126720K), 0.0144267 secs] 
+                [Times: user=0.02 sys=0.00, real=0.01 secs] 
+10:	8.150: [CMS-concurrent-sweep-start]
+11:	8.161: [CMS-concurrent-sweep: 0.010/0.011 secs] [Times: user=0.03 sys=0.02, real=0.01 secs] 
+12:	8.161: [CMS-concurrent-reset-start]
+13:	8.162: [CMS-concurrent-reset: 0.001/0.001 secs] [Times: user=0.00 sys=0.00, real=0.00 secs]
+</code></pre></div><p><strong>日志说明:</strong></p> <ul><li>第1行
+<code>CMS Initial Mark</code>说明开始初始标记，此时会停顿所有java线程， <code>37262K</code>是当前java堆的使用量， <code>87424K</code>是java堆的总量，因为这段gc日志是在我的程序启动过程中的，所以看到后面还有<code>42307K(126720K)</code>，说明在启动过程中，java堆内存在扩大。</li> <li>第2行
+开始并发标记，此时是和java线程并发执行。</li> <li>第3行
+显式了并发标记的时间。</li> <li>第4行
+开始并发预清除，也就是对并发标记阶段发生引用变化的对象进行重新标记。</li> <li>第5行
+显式了并发预清除的执行时间。</li> <li>第6行
+开始终止并发预清除。</li> <li>第7行
+这是一次MinorGC日志，这也说明了在CMS并发阶段，也可能会进行MinorGC，此处的<code>76189K-&gt;43991K(126720K)</code>可以看出在CMS并发清除前，这次MonorGC后，java堆的使用量为43991K。</li> <li>第8行
+终止并发预清除，此时依然穿插了一次MinorGC。</li> <li>第9行
+进行最后标记， <code>CMS-remark: 39874K(87424K)] 41443K(126720K)</code>中可以看出当前java堆总量为126720K，使用量为41443K。</li> <li>第10行
+开始并发清除。</li> <li>第11行
+显式并发清除执行时间。</li> <li>第12行
+重置并发，表示一个CMS清除周期完毕。</li></ul> <p>注意CMS并发清除开始和结束时的MinorGC，如果java堆的占用几乎没有怎么降低，很少有对象被回收，说明该轮CMS垃圾收集周期几乎没有找到垃圾对象而只是在浪费cpu，或者对象以不小于CMS并行清除垃圾对象的速度被提升到老年代。这两种情况都说明jvm需要调优，具体的调优请看后面专门的章节，此章节主要讲解如何理解GC日志。</p> <p>如果对象提升到老年代的速度太快，而CMS收集器不能保持足够多的可用空间时，就会导致老年代的运行空间不足，这成为并发模式失败。当老年代碎片化达到某种程度，使得没有足够空间容纳新提升的对象时，也会引发并发模式失败。
+当出现并发模式失败时，CMS的GC日志会有”<strong>concurrent mode failure</strong>”。发生并发模式失败时，老年代将以STW的方式进行垃圾收集，并且整理压缩碎片。</p> <p><strong>作为一般性准则，并发垃圾收集的开销应该小于10%，也有可能达到1-3%。</strong></p> <h3 id="_1-6-补充"><a href="#_1-6-补充" class="header-anchor">#</a> 1.6 补充</h3> <p>使用 <code>–XX:+PrintGCApplicationConcurrentTime</code> 和 <code>–XX:+PrintGCApplicationStoppedTime</code>，jvm可以报告应用在安全点操作之间的运行时间，以及阻塞java线程的时间。
+利用这俩个选项观察安全点操作有助于理解和量化延迟对jvm的影响，也可以用来辨别jvm安全点操作还是应用程序引入的延迟。</p> <p>一段日志示例:</p> <div class="language- extra-class"><pre class="language-text"><code>8.752: Application time: 0.1273273 seconds    //此处延迟由MinorGC造成
+8.752: [GC (Allocation Failure) 8.752: [ParNew: 38435K-&gt;433K(39296K), 0.0020703 secs] 73597K-&gt;35763K(126720K), 0.0021173 secs] 
+        [Times: user=0.00 sys=0.00, real=0.00 secs] 
+8.754: Total time for which application threads were stopped: 0.0022436 seconds, Stopping threads took: 0.0000156 seconds    
+8.754: Application time: 0.0001583 seconds    //此处延迟由应用本身引入
+8.754: Total time for which application threads were stopped: 0.0001487 seconds, Stopping threads took: 0.0000837 seconds
+</code></pre></div><p>通过命令行选项 <code>-XX:+DisableExplicitGC</code> 可以禁用System.gc()。</p> <h2 id="_2-jconsole"><a href="#_2-jconsole" class="header-anchor">#</a> 2. JConsole</h2> <p>JConsole是一款随jdk发布的图形化jvm监控工具。</p> <h3 id="_2-1-启动"><a href="#_2-1-启动" class="header-anchor">#</a> 2.1 启动</h3> <p>在jdk安装目录的bin目录中可以找到jconsole，如下图：</p> <p><img src="/img/java/jvm/2.1.png" alt="img"></p> <p>在windows操作系统中，可以直接双击打开，也可以通过命令行打开。</p> <p><img src="/img/java/jvm/2.2.png" alt="img"></p> <h3 id="_2-2-连接jvm应用"><a href="#_2-2-连接jvm应用" class="header-anchor">#</a> 2.2 连接jvm应用</h3> <p>选择上图中pid为7420的应用，点击连接。</p> <p><img src="/img/java/jvm/2.3.png" alt="img"></p> <h3 id="_2-3-连接成功"><a href="#_2-3-连接成功" class="header-anchor">#</a> 2.3 连接成功</h3> <p><img src="/img/java/jvm/2.4.png" alt="img"></p> <h3 id="_2-4-内存监控"><a href="#_2-4-内存监控" class="header-anchor">#</a> 2.4 内存监控</h3> <p><img src="/img/java/jvm/2.5.png" alt="img"></p> <p>补充：监控时可以留意一下Survivor是否长时间处于满状态，如果是，说明Survivor已经溢出，对象在老化之前就被提升到老年代，对新生代调优可以解决该问题。</p> <h3 id="_2-5-线程监控"><a href="#_2-5-线程监控" class="header-anchor">#</a> 2.5 线程监控</h3> <p><img src="/img/java/jvm/2.6.png" alt="img"></p> <h3 id="_2-6-类加载监控"><a href="#_2-6-类加载监控" class="header-anchor">#</a> 2.6 类加载监控</h3> <p><img src="/img/java/jvm/2.7.png" alt="img"></p> <h3 id="_2-7-vm概要"><a href="#_2-7-vm概要" class="header-anchor">#</a> 2.7 VM概要</h3> <p><img src="/img/java/jvm/2.8.png" alt="img"></p> <p>以文本形式显式当前时间jvm中各项监控指标的数据</p> <h3 id="_2-8-mbean监控"><a href="#_2-8-mbean监控" class="header-anchor">#</a> 2.8 MBean监控</h3> <p>此界面列出了所有MBean，可以点击相应的MBean查看属性状态 。</p> <p><img src="/img/java/jvm/2.9.png" alt="img"></p> <h2 id="_3-visualvm"><a href="#_3-visualvm" class="header-anchor">#</a> 3. VisualVM</h2> <p>VisualVM也是一款随jdk发布的图形化监测工具。</p> <h3 id="_3-1-启动"><a href="#_3-1-启动" class="header-anchor">#</a> 3.1 启动</h3> <p>在jdk安装目录的bin目录中,可以找到jvisualvm,如下图:
+<img src="/img/java/jvm/3.1.png" alt="img"></p> <p>在windows操作系统中,可以直接双击运行,也可以通过命令行运行
+<img src="/img/java/jvm/3.2.png" alt="img"></p> <h3 id="_3-2-概述"><a href="#_3-2-概述" class="header-anchor">#</a> 3.2 概述</h3> <p>应用打开后，自动进入概述页面，此页面以文本形式列出了当前应用的一些基础信息。
+<img src="/img/java/jvm/3.3.png" alt="img"></p> <h3 id="_3-3-监控"><a href="#_3-3-监控" class="header-anchor">#</a> 3.3 监控</h3> <p><img src="/img/java/jvm/3.4.png" alt="img">
+VisualVM默认将四个jvm监控指标放在了一起，每个指标的监控图与JConsole相比，没有JConsole数据详细，但是图形化要比JConsole更加直观。</p> <h3 id="_3-4-线程详情监测"><a href="#_3-4-线程详情监测" class="header-anchor">#</a> 3.4 线程详情监测</h3> <p><img src="/img/java/jvm/3.5.png" alt="img">
+VisualVM通过不同的颜色标记线程状态，相比JConsole，更加直观，但是却没有了JConsole中的堆栈追踪信息，在分析线程等待原因及死锁上不如JConsole。</p> <h3 id="_3-5-抽样器"><a href="#_3-5-抽样器" class="header-anchor">#</a> 3.5 抽样器</h3> <p>可以随时对cpu和内存进行抽样，后期出现问题时可以通过对不同时间点的抽样数据来查找原因。
+<img src="/img/java/jvm/3.6.png" alt="img"></p> <h3 id="_3-6-性能分析"><a href="#_3-6-性能分析" class="header-anchor">#</a> 3.6 性能分析</h3> <p>可以对当前cpu和内存的状态进行性能分析。
+<img src="/img/java/jvm/3.7.png" alt="img"></p> <h2 id="_4-jatack"><a href="#_4-jatack" class="header-anchor">#</a> 4. jatack</h2> <p>快速定位java应用中的锁竞争，常用的技巧是用jdk的jatack抓取线程转储信息，监控锁竞争。</p> <p><strong>jatack命令格式</strong></p> <div class="language- extra-class"><pre class="language-text"><code>jstack [ option ] pid 
+jstack [ option ] executable core 
+jstack [ option ] [server-id@]remote-hostname-or-IP
+</code></pre></div><p><strong>常用参数说明</strong></p> <ul><li><p>options</p> <ul><li><code>executable</code> <br>Java executable from which the core dump was produced.(可能是产生core dump的java可执行程序)。</li> <li><code>core</code> <br>将被打印信息的core dump文件。</li> <li><code>remote-hostname-or-IP</code> <br>远程debug服务的主机名或ip。</li> <li><code>server-id</code> <br>唯一id,假如一台主机上多个远程debug服务。</li></ul></li> <li><p>基本参数</p> <ul><li><code>-F</code> <br>当’jstack [-l] pid’没有相应的时候强制打印栈信息。</li> <li><code>-l</code> <br>长列表。打印关于锁的附加信息，例如属于java.util.concurrent的ownable synchronizers列表。</li> <li><code>-m</code> <br>打印java和native c/c++框架的所有栈信息，可以打印JVM的堆栈。</li> <li><code>-h | -help</code> <br>打印帮助信息。</li> <li><code>pid</code> <br>需要被打印配置信息的java进程id，可以用jps查询。</li></ul></li></ul> <p><strong>抓取日志示例</strong></p> <div class="language- extra-class"><pre class="language-text"><code>&quot;http-nio-8080-ClientPoller-0&quot; #52 daemon prio=5 os_prio=0 tid=0x000000005f164000 nid=0x13a0 runnable [0x0000000061cee000]
+   java.lang.Thread.State: RUNNABLE
+        at sun.nio.ch.WindowsSelectorImpl$SubSelector.poll0(Native Method)
+        at sun.nio.ch.WindowsSelectorImpl$SubSelector.poll(WindowsSelectorImpl.java:296)
+        at sun.nio.ch.WindowsSelectorImpl$SubSelector.access$400(WindowsSelectorImpl.java:278)
+        at sun.nio.ch.WindowsSelectorImpl.doSelect(WindowsSelectorImpl.java:159)
+        at sun.nio.ch.SelectorImpl.lockAndDoSelect(SelectorImpl.java:86)
+        - locked &lt;0x00000000ad3b1d38&gt; (a sun.nio.ch.Util$2)
+        - locked &lt;0x00000000ad3d56d8&gt; (a java.util.Collections$UnmodifiableSet)
+        - locked &lt;0x00000000ad3ba000&gt; (a sun.nio.ch.WindowsSelectorImpl)
+        at sun.nio.ch.SelectorImpl.select(SelectorImpl.java:97)
+        at org.apache.tomcat.util.net.NioEndpoint$Poller.run(NioEndpoint.java:787)
+        at java.lang.Thread.run(Thread.java:745)
+
+   Locked ownable synchronizers:
+        - None
+
+&quot;http-nio-8080-exec-10&quot; #51 daemon prio=5 os_prio=0 tid=0x000000005f163000 nid=0x1de8 waiting on condition [0x0000000061ace000]
+   java.lang.Thread.State: WAITING (parking)
+        at sun.misc.Unsafe.park(Native Method)
+        - parking to wait for  &lt;0x00000000ad4dbc58&gt; (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+        at java.util.concurrent.locks.LockSupport.park(LockSupport.java:175)
+        at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2039)
+        at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)
+        at org.apache.tomcat.util.threads.TaskQueue.take(TaskQueue.java:103)
+        at org.apache.tomcat.util.threads.TaskQueue.take(TaskQueue.java:31)
+        at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1067)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1127)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+        at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+        at java.lang.Thread.run(Thread.java:745)
+
+   Locked ownable synchronizers:
+        - None
+
+&quot;http-nio-8080-exec-9&quot; #50 daemon prio=5 os_prio=0 tid=0x000000005f162800 nid=0x219c waiting on condition [0x000000006191e000]
+   java.lang.Thread.State: WAITING (parking)
+        at sun.misc.Unsafe.park(Native Method)
+        - parking to wait for  &lt;0x00000000ad4dbc58&gt; (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+        at java.util.concurrent.locks.LockSupport.park(LockSupport.java:175)
+        at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2039)
+        at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)
+        at org.apache.tomcat.util.threads.TaskQueue.take(TaskQueue.java:103)
+        at org.apache.tomcat.util.threads.TaskQueue.take(TaskQueue.java:31)
+        at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1067)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1127)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+        at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+        at java.lang.Thread.run(Thread.java:745)
+
+   Locked ownable synchronizers:
+        - None
+
+&quot;http-nio-8080-exec-8&quot; #49 daemon prio=5 os_prio=0 tid=0x000000005f161800 nid=0x202c waiting on condition [0x0000000060e0e000]
+   java.lang.Thread.State: WAITING (parking)
+        at sun.misc.Unsafe.park(Native Method)
+        - parking to wait for  &lt;0x00000000ad4dbc58&gt; (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+        at java.util.concurrent.locks.LockSupport.park(LockSupport.java:175)
+        at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2039)
+        at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)
+        at org.apache.tomcat.util.threads.TaskQueue.take(TaskQueue.java:103)
+        at org.apache.tomcat.util.threads.TaskQueue.take(TaskQueue.java:31)
+        at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1067)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1127)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+        at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+        at java.lang.Thread.run(Thread.java:745)
+
+   Locked ownable synchronizers:
+        - None
+</code></pre></div><p>上面是一段jstack日志，可以看到很多这种格式 <code>waiting on condition [0x0000000060e0e000]</code> 的文本，说明线程正在等待获取某个锁，中括号中的一串标识就是锁地址。每个锁在jatack日志中的标识都是唯一的，如果多个线程在等待同一个标识，那么说明在竞争同一个锁。jstack对追踪锁竞争和查看锁竞争激烈程度十分有用，对分析死锁也很有用。</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/blog/java/jvm/default/HotSpotVM架构.html" class="prev">
+        HotSpotVM 架构
+      </a></span> <!----></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/blog/assets/js/app.be7b3c5d.js" defer></script><script src="/blog/assets/js/2.ba6b1436.js" defer></script><script src="/blog/assets/js/1.2d4ce02f.js" defer></script><script src="/blog/assets/js/103.42ccafa6.js" defer></script>
+  </body>
+</html>
